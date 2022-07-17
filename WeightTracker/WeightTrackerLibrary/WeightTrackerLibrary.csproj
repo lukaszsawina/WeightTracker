@@ -41,6 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\IPersonModel.cs" />
+    <Compile Include="Models\IWeightModel.cs" />
     <Compile Include="Models\PersonModel.cs" />
     <Compile Include="Models\WeightModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
