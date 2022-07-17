@@ -1,0 +1,14 @@
+C:\dev\C#\WeightTracker_WinFormApp\WeightTracker\WeightTracker\bin\Debug\WeightTracker.exe.config
+C:\dev\C#\WeightTracker_WinFormApp\WeightTracker\WeightTracker\bin\Debug\WeightTracker.exe
+C:\dev\C#\WeightTracker_WinFormApp\WeightTracker\WeightTracker\bin\Debug\WeightTracker.pdb
+C:\dev\C#\WeightTracker_WinFormApp\WeightTracker\WeightTracker\obj\Debug\WeightTracker.csproj.AssemblyReference.cache
+C:\dev\C#\WeightTracker_WinFormApp\WeightTracker\WeightTracker\obj\Debug\WeightTracker.csproj.SuggestedBindingRedirects.cache
+C:\dev\C#\WeightTracker_WinFormApp\WeightTracker\WeightTracker\obj\Debug\WeightTracker.PersonsViewForm.resources
+C:\dev\C#\WeightTracker_WinFormApp\WeightTracker\WeightTracker\obj\Debug\WeightTracker.Properties.Resources.resources
+C:\dev\C#\WeightTracker_WinFormApp\WeightTracker\WeightTracker\obj\Debug\WeightTracker.csproj.GenerateResource.cache
+C:\dev\C#\WeightTracker_WinFormApp\WeightTracker\WeightTracker\obj\Debug\WeightTracker.csproj.CoreCompileInputs.cache
+C:\dev\C#\WeightTracker_WinFormApp\WeightTracker\WeightTracker\obj\Debug\WeightTracker.exe
+C:\dev\C#\WeightTracker_WinFormApp\WeightTracker\WeightTracker\obj\Debug\WeightTracker.pdb
+C:\dev\C#\WeightTracker_WinFormApp\WeightTracker\WeightTracker\bin\Debug\WeightTrackerLibrary.dll
+C:\dev\C#\WeightTracker_WinFormApp\WeightTracker\WeightTracker\bin\Debug\WeightTrackerLibrary.pdb
+C:\dev\C#\WeightTracker_WinFormApp\WeightTracker\WeightTracker\obj\Debug\WeightTracker.csproj.CopyComplete

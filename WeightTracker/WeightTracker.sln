@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32630.192
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WeightTrackerLibrary", "WeightTrackerLibrary\WeightTrackerLibrary.csproj", "{0E11E23A-0211-495E-823D-581D77C85A1D}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeightTracker", "WeightTracker\WeightTracker.csproj", "{A8032944-2C49-4BA8-86D3-A2EB231BEEDF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeightTrackerLibrary", "WeightTrackerLibrary\WeightTrackerLibrary.csproj", "{FE986053-00FA-4E7F-9B08-C1DA295B3224}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,14 +13,14 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{0E11E23A-0211-495E-823D-581D77C85A1D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0E11E23A-0211-495E-823D-581D77C85A1D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0E11E23A-0211-495E-823D-581D77C85A1D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0E11E23A-0211-495E-823D-581D77C85A1D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A8032944-2C49-4BA8-86D3-A2EB231BEEDF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A8032944-2C49-4BA8-86D3-A2EB231BEEDF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A8032944-2C49-4BA8-86D3-A2EB231BEEDF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A8032944-2C49-4BA8-86D3-A2EB231BEEDF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FE986053-00FA-4E7F-9B08-C1DA295B3224}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE986053-00FA-4E7F-9B08-C1DA295B3224}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE986053-00FA-4E7F-9B08-C1DA295B3224}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE986053-00FA-4E7F-9B08-C1DA295B3224}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

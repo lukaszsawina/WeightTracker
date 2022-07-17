@@ -54,6 +54,8 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utilities\IValidator.cs" />
+    <Compile Include="Utilities\Validator.cs" />
     <EmbeddedResource Include="PersonsViewForm.resx">
       <DependentUpon>PersonsViewForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -78,6 +80,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\WeightTrackerLibrary\WeightTrackerLibrary.csproj">
+      <Project>{fe986053-00fa-4e7f-9b08-c1da295b3224}</Project>
+      <Name>WeightTrackerLibrary</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

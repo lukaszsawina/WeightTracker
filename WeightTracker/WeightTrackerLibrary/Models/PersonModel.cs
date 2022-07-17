@@ -13,5 +13,20 @@ namespace WeightTrackerLibrary.Models
         public int Age { get; private set; }
         public int Height { get; private set; }
         public List<WeightModel> WeightRecords { get; set; } = new List<WeightModel>();
+        public string FullName
+        {
+            get
+            {
+                return $"{ Id }: { Name }";
+            }
+        }
+
+        public PersonModel(int id, string name, int age, int height)
+        {
+            Id = id;
+            Name = name;
+            Age = age;
+            Height = height;
+        }
     }
 }
