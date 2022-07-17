@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WeightTrackerLibrary.Models
 {
-    public class PersonModel
+    public class PersonModel : IPersonModel
     {
         public int Id { get; private set; }
         public string Name { get; private set; }
@@ -17,7 +17,7 @@ namespace WeightTrackerLibrary.Models
         {
             get
             {
-                return $"{ Id }: { Name }";
+                return $"{Id}: {Name}";
             }
         }
 

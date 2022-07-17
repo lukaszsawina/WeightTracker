@@ -15,7 +15,7 @@ namespace WeightTracker
     public partial class PersonsViewForm : Form
     {
         private IValidator _validator;
-        private List<PersonModel> PersonRecords = new List<PersonModel>();
+        private List<IPersonModel> PersonRecords = new List<IPersonModel>();
 
         public void InitializeDemoData()
         {
@@ -57,7 +57,7 @@ namespace WeightTracker
                 string height = HeightTextBox.Text;
 
                 _validator.NewPersonValid(newId, name, age, height);
-                PersonModel newPerson = new PersonModel(newId, name, Int32.Parse(age), Int32.Parse(height));
+                IPersonModel newPerson = new PersonModel(newId, name, Int32.Parse(age), Int32.Parse(height));
                 PersonRecords.Add(newPerson);
 
                 WireUp();
