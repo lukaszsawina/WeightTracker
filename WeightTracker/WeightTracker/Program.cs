@@ -33,7 +33,7 @@ namespace WeightTracker
             var builder = new ContainerBuilder();
 
             //Template for single class
-            builder.RegisterType<ValidatorCopy>().As<IValidator>();
+            builder.RegisterType<Validator>().As<IValidator>();
 
             builder.RegisterAssemblyTypes(Assembly.Load(nameof(WeightTracker)))
                 .Where(t => t.Namespace.Contains("Utilities"))

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using System.Windows.Forms;
+using WeightTracker.Controller;
 using WeightTracker.Utilities;
 using WeightTrackerLibrary.Models;
 
@@ -10,19 +12,20 @@ namespace WeightTracker
     {
         private IValidator _validator;
         private List<IPersonModel> PersonRecords = new List<IPersonModel>();
-
-        public void InitializeDemoData()
+        public async void InitializeDemoData()
         {
-            PersonRecords.Add(new PersonModel(1, "Adam", 19, 183));
-            PersonRecords.Add(new PersonModel(2, "Jan", 30, 179));
+
+            FileAccessor FA = new FileAccessor();
+            await Task.Run(() => FA.LoadPersonFromFileAsync(PersonRecords));
+
+            WireUp();
         }
         public PersonsViewForm(IValidator validator)
         {
             _validator = validator;
-
             InitializeComponent();
             InitializeDemoData();
-            WireUp();
+            
         } 
         private void WireUp()
         {
