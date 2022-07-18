@@ -199,6 +199,7 @@
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "PersonsViewForm";
             this.Text = "Weight Track app";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.PersonsViewForm_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();
 

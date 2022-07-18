@@ -72,6 +72,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controller\FileAccessor.cs" />
+    <Compile Include="Controller\IFileAccessor.cs" />
     <Compile Include="PersonsViewForm.cs">
       <SubType>Form</SubType>
     </Compile>

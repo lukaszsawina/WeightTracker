@@ -11,21 +11,21 @@ namespace WeightTracker
     public partial class PersonsViewForm : Form
     {
         private IValidator _validator;
+        private IFileAccessor _fileAccess;
         private List<IPersonModel> PersonRecords = new List<IPersonModel>();
-        public async void InitializeDemoData()
+
+        public async void InitializeData()
         {
-
-            FileAccessor FA = new FileAccessor();
-            await Task.Run(() => FA.LoadPersonFromFileAsync(PersonRecords));
-
+            await _fileAccess.LoadPersonFromFileAsync(PersonRecords);
             WireUp();
         }
-        public PersonsViewForm(IValidator validator)
+        public PersonsViewForm(IFileAccessor fileAccess, IValidator validator)
         {
+            _fileAccess = fileAccess;
             _validator = validator;
+
             InitializeComponent();
-            InitializeDemoData();
-            
+            InitializeData();
         } 
         private void WireUp()
         {
@@ -64,6 +64,17 @@ namespace WeightTracker
             {
                 ErrorInputLabel.Text = ex.Message;
             }
-        }        
+        }
+        private async void PersonsViewForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (e.CloseReason == CloseReason.UserClosing)
+                await _fileAccess.SavePersonToFileAsync(PersonRecords);
+
+
+            if (e.CloseReason == CloseReason.WindowsShutDown)
+                await _fileAccess.SavePersonToFileAsync(PersonRecords);
+
+
+        }
     }
 }
