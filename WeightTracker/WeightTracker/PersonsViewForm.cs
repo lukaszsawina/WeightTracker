@@ -16,7 +16,16 @@ namespace WeightTracker
 
         public async void InitializeData()
         {
-            await _fileAccess.LoadPersonFromFileAsync(PersonRecords);
+            int progresValue = 0;
+            var progress = new Progress<int>(percent =>
+            {
+                LoadDataProgressBar.Value = percent;
+                progresValue = percent;
+            });
+
+            await Task.Run(() => _fileAccess.LoadPersonFromFileAsync(PersonRecords, progress));
+            if (progresValue == 100)
+                LoadDataProgressBar.Visible = false;
             WireUp();
         }
         public PersonsViewForm(IFileAccessor fileAccess, IValidator validator)

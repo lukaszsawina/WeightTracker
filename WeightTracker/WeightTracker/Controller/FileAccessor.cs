@@ -13,9 +13,15 @@ namespace WeightTracker.Controller
         private readonly string PersonFile = @"C:\dev\C#\WeightTracker_WinFormApp\WeightTracker\Person.csv";
         private readonly string WeightFile = @"C:\dev\C#\WeightTracker_WinFormApp\WeightTracker\Weight.csv";
 
-        public async Task LoadPersonFromFileAsync(List<IPersonModel> listOfPerson)
+        public async Task LoadPersonFromFileAsync(List<IPersonModel> listOfPerson, IProgress<int> progress)
         {
-            listOfPerson.AddRange(await Task.Run(() => LoadPerson(PersonFile)));
+            List<IPersonModel> LoadedPersons = await Task.Run(() => LoadPerson(PersonFile));
+            foreach(var person in LoadedPersons)
+            {
+                listOfPerson.Add(person);
+                var progressComplete = listOfPerson.Count * 100 / LoadedPersons.Count;
+                progress.Report(progressComplete);
+            }
         }
         public async Task SavePersonToFileAsync(List<IPersonModel> listOfPerson)
         {
@@ -26,7 +32,6 @@ namespace WeightTracker.Controller
         {
             List<IPersonModel> output = new List<IPersonModel>();
             var lines = File.ReadAllLines(file);
-
             foreach (var line in lines)
             {
                 string[] splitedLine = line.Split(';');
