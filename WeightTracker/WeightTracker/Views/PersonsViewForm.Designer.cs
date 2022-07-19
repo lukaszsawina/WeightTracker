@@ -73,6 +73,7 @@
             this.SelectPersonButton.TabIndex = 11;
             this.SelectPersonButton.Text = "Select";
             this.SelectPersonButton.UseVisualStyleBackColor = true;
+            this.SelectPersonButton.Click += new System.EventHandler(this.SelectPersonButton_Click);
             // 
             // SelectPersonLabel
             // 

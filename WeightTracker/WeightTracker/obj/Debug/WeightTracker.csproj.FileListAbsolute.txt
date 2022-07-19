@@ -28,3 +28,4 @@ C:\dev\C#\WeightTracker_WinFormApp\WeightTracker\WeightTracker\bin\Debug\System.
 C:\dev\C#\WeightTracker_WinFormApp\WeightTracker\WeightTracker\bin\Debug\System.Numerics.Vectors.xml
 C:\dev\C#\WeightTracker_WinFormApp\WeightTracker\WeightTracker\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
 C:\dev\C#\WeightTracker_WinFormApp\WeightTracker\WeightTracker\bin\Debug\System.Threading.Tasks.Extensions.xml
+C:\dev\C#\WeightTracker_WinFormApp\WeightTracker\WeightTracker\obj\Debug\WeightTracker.Views.PersonMenuVIewForm.resources
