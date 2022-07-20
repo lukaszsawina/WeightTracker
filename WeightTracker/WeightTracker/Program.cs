@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using WeightTracker.Controller;
 using WeightTracker.Utilities;
+using WeightTracker.Views;
 
 namespace WeightTracker
 {

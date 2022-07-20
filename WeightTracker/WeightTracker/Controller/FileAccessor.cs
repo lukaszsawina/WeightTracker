@@ -13,7 +13,7 @@ namespace WeightTracker.Controller
         private readonly string PersonFile = @"C:\dev\C#\WeightTracker_WinFormApp\WeightTracker\Person.csv";
         private readonly string WeightFile = @"C:\dev\C#\WeightTracker_WinFormApp\WeightTracker\Weight.csv";
 
-        public async Task LoadPersonFromFileAsync(List<IPersonModel> listOfPerson, IProgress<int> progress)
+        public async Task LoadPersonAsync(List<IPersonModel> listOfPerson, IProgress<int> progress)
         {
             List<IPersonModel> LoadedPersons = await Task.Run(() => LoadPerson(PersonFile));
             foreach(var person in LoadedPersons)
@@ -22,12 +22,8 @@ namespace WeightTracker.Controller
                 var progressComplete = listOfPerson.Count * 100 / LoadedPersons.Count;
                 progress.Report(progressComplete);
             }
+            await Task.Run(() => LoadWeight(WeightFile, listOfPerson));
         }
-        public async Task SavePersonToFileAsync(List<IPersonModel> listOfPerson)
-        {
-            await SavePersonAsync(PersonFile, listOfPerson);
-        }
-
         private List<IPersonModel> LoadPerson(string file)
         {
             List<IPersonModel> output = new List<IPersonModel>();
@@ -41,15 +37,49 @@ namespace WeightTracker.Controller
 
             return output;
         }
-
-        private async Task SavePersonAsync(string file, List<IPersonModel> listOfPerson)
+        private void LoadWeight(string file, List<IPersonModel> listOfPerson)
         {
-            using (StreamWriter sw = new StreamWriter(file))
+            var lines = File.ReadAllLines(file);
+
+            foreach (var line in lines)
+            {
+                if (line.Length == 0)
+                    continue;
+                string[] splitedLine = line.Split(';');
+                IWeightModel newWeight = new WeightModel(Int32.Parse(splitedLine[1]), float.Parse(splitedLine[2]), DateTime.Parse(splitedLine[3]));
+                listOfPerson.Where(x => x.Id == Int32.Parse(splitedLine[0])).FirstOrDefault().WeightRecords.Add((WeightModel)newWeight);
+            }
+            
+        }
+        public async Task SavePersonAsync(List<IPersonModel> listOfPerson)
+        {
+            await SavePersonAsync(PersonFile, WeightFile, listOfPerson);
+
+        }
+        private async Task SavePersonAsync(string personFile, string weightFile, List<IPersonModel> listOfPerson)
+        {
+            using (StreamWriter sw = new StreamWriter(personFile))
             {
                 foreach(var p in listOfPerson)
                 {
                     string line = $"{p.Id};{p.Name};{p.Age};{p.Height}";
                     await sw.WriteLineAsync(line);
+                }
+            }
+
+            await SaveWeightsAsync(weightFile, listOfPerson);
+
+        }
+        private async Task SaveWeightsAsync(string file, List<IPersonModel> listOfPerson)
+        {
+
+            using (StreamWriter wsw = new StreamWriter(file))
+            {
+                foreach(var p in listOfPerson)
+                foreach(var w in p.WeightRecords)
+                {
+                    string line = $"{p.Id};{w.Id};{w.Weight};{w.DateWhenAdd}";
+                    await Task.Run(() => wsw.WriteLineAsync(line));
                 }
             }
         }

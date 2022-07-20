@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using WeightTracker.Controller;
 using WeightTracker.Utilities;
+using WeightTracker.Views;
 using WeightTrackerLibrary.Models;
 
 namespace WeightTracker
@@ -23,7 +24,7 @@ namespace WeightTracker
                 progresValue = percent;
             });
 
-            await Task.Run(() => _fileAccess.LoadPersonFromFileAsync(PersonRecords, progress));
+            await Task.Run(() => _fileAccess.LoadPersonAsync(PersonRecords, progress));
             if (progresValue == 100)
                 LoadDataProgressBar.Visible = false;
             WireUp();
@@ -35,7 +36,7 @@ namespace WeightTracker
 
             InitializeComponent();
             InitializeData();
-        } 
+        }
         private void WireUp()
         {
             PersonListBox.DataSource = null;
@@ -69,7 +70,7 @@ namespace WeightTracker
                 WireUp();
                 ClearInputs();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 ErrorInputLabel.Text = ex.Message;
             }
@@ -77,18 +78,17 @@ namespace WeightTracker
         private async void PersonsViewForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (e.CloseReason == CloseReason.UserClosing)
-                await _fileAccess.SavePersonToFileAsync(PersonRecords);
-
+                await _fileAccess.SavePersonAsync(PersonRecords);
 
             if (e.CloseReason == CloseReason.WindowsShutDown)
-                await _fileAccess.SavePersonToFileAsync(PersonRecords);
-
-
+                await _fileAccess.SavePersonAsync(PersonRecords);
         }
 
         private void SelectPersonButton_Click(object sender, EventArgs e)
         {
-
+            var personMenuForm = new PersonMenuViewForm((PersonModel)PersonListBox.SelectedItem, _validator, this);
+            this.Hide();
+            personMenuForm.Show();
         }
     }
 }

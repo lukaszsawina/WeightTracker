@@ -3,7 +3,6 @@ C:\dev\C#\WeightTracker_WinFormApp\WeightTracker\WeightTracker\bin\Debug\WeightT
 C:\dev\C#\WeightTracker_WinFormApp\WeightTracker\WeightTracker\bin\Debug\WeightTracker.pdb
 C:\dev\C#\WeightTracker_WinFormApp\WeightTracker\WeightTracker\obj\Debug\WeightTracker.csproj.AssemblyReference.cache
 C:\dev\C#\WeightTracker_WinFormApp\WeightTracker\WeightTracker\obj\Debug\WeightTracker.csproj.SuggestedBindingRedirects.cache
-C:\dev\C#\WeightTracker_WinFormApp\WeightTracker\WeightTracker\obj\Debug\WeightTracker.PersonsViewForm.resources
 C:\dev\C#\WeightTracker_WinFormApp\WeightTracker\WeightTracker\obj\Debug\WeightTracker.Properties.Resources.resources
 C:\dev\C#\WeightTracker_WinFormApp\WeightTracker\WeightTracker\obj\Debug\WeightTracker.csproj.GenerateResource.cache
 C:\dev\C#\WeightTracker_WinFormApp\WeightTracker\WeightTracker\obj\Debug\WeightTracker.csproj.CoreCompileInputs.cache
@@ -29,3 +28,4 @@ C:\dev\C#\WeightTracker_WinFormApp\WeightTracker\WeightTracker\bin\Debug\System.
 C:\dev\C#\WeightTracker_WinFormApp\WeightTracker\WeightTracker\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
 C:\dev\C#\WeightTracker_WinFormApp\WeightTracker\WeightTracker\bin\Debug\System.Threading.Tasks.Extensions.xml
 C:\dev\C#\WeightTracker_WinFormApp\WeightTracker\WeightTracker\obj\Debug\WeightTracker.Views.PersonMenuVIewForm.resources
+C:\dev\C#\WeightTracker_WinFormApp\WeightTracker\WeightTracker\obj\Debug\WeightTracker.PersonsViewForm.resources

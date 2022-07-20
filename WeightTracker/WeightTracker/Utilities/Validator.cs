@@ -26,5 +26,17 @@ namespace WeightTracker
             else if (newHeight < 0 || newHeight > 300)
                 throw new Exception("Invalid height value");
         }
+
+        public void NewWeightValid(int id, string weight)
+        {
+            float newWeight;
+
+            if (id < 0)
+                throw new Exception("Invalid ID number");
+            else if (!float.TryParse(weight, out newWeight))
+                throw new Exception("Invalid weight value");
+            else if (newWeight < 0)
+                throw new Exception("Invalid weight value");
+        }
     }
 }

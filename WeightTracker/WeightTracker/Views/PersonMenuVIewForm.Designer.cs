@@ -1,6 +1,6 @@
 ﻿namespace WeightTracker.Views
 {
-    partial class PersonMenuVIewForm
+    partial class PersonMenuViewForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,12 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.PersonDataLabel = new System.Windows.Forms.Label();
+            this.PersonNameTitleLabel = new System.Windows.Forms.Label();
             this.AgeTitleLabel = new System.Windows.Forms.Label();
             this.WeightsListBox = new System.Windows.Forms.ListBox();
             this.WeightsTitleLabel = new System.Windows.Forms.Label();
             this.AddButton = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.RemoveButton = new System.Windows.Forms.Button();
             this.BMITitleLabel = new System.Windows.Forms.Label();
             this.BMIValueLabel = new System.Windows.Forms.Label();
             this.WhatMeansTitleLabel = new System.Windows.Forms.Label();
@@ -43,18 +43,23 @@
             this.HeightTitleLabel = new System.Windows.Forms.Label();
             this.DeletePersonButton = new System.Windows.Forms.Button();
             this.ChangePersonButton = new System.Windows.Forms.Button();
+            this.ReturnButton = new System.Windows.Forms.Button();
+            this.PersonNameLabel = new System.Windows.Forms.Label();
+            this.NewWeightTextBox = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.ErrorInputLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // PersonDataLabel
+            // PersonNameTitleLabel
             // 
-            this.PersonDataLabel.AutoSize = true;
-            this.PersonDataLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold);
-            this.PersonDataLabel.Location = new System.Drawing.Point(15, 9);
-            this.PersonDataLabel.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
-            this.PersonDataLabel.Name = "PersonDataLabel";
-            this.PersonDataLabel.Size = new System.Drawing.Size(166, 31);
-            this.PersonDataLabel.TabIndex = 0;
-            this.PersonDataLabel.Text = "Name: N/N ";
+            this.PersonNameTitleLabel.AutoSize = true;
+            this.PersonNameTitleLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold);
+            this.PersonNameTitleLabel.Location = new System.Drawing.Point(15, 9);
+            this.PersonNameTitleLabel.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.PersonNameTitleLabel.Name = "PersonNameTitleLabel";
+            this.PersonNameTitleLabel.Size = new System.Drawing.Size(99, 31);
+            this.PersonNameTitleLabel.TabIndex = 0;
+            this.PersonNameTitleLabel.Text = "Name:";
             // 
             // AgeTitleLabel
             // 
@@ -71,7 +76,7 @@
             this.WeightsListBox.ItemHeight = 25;
             this.WeightsListBox.Location = new System.Drawing.Point(340, 40);
             this.WeightsListBox.Name = "WeightsListBox";
-            this.WeightsListBox.Size = new System.Drawing.Size(232, 254);
+            this.WeightsListBox.Size = new System.Drawing.Size(232, 229);
             this.WeightsListBox.TabIndex = 2;
             // 
             // WeightsTitleLabel
@@ -86,27 +91,29 @@
             // AddButton
             // 
             this.AddButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.AddButton.Location = new System.Drawing.Point(340, 300);
+            this.AddButton.Location = new System.Drawing.Point(340, 326);
             this.AddButton.Name = "AddButton";
             this.AddButton.Size = new System.Drawing.Size(108, 47);
             this.AddButton.TabIndex = 4;
             this.AddButton.Text = "Add weight";
             this.AddButton.UseVisualStyleBackColor = true;
+            this.AddButton.Click += new System.EventHandler(this.AddButton_Click);
             // 
-            // button1
+            // RemoveButton
             // 
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.button1.Location = new System.Drawing.Point(454, 300);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(118, 47);
-            this.button1.TabIndex = 5;
-            this.button1.Text = "Remove";
-            this.button1.UseVisualStyleBackColor = true;
+            this.RemoveButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.RemoveButton.Location = new System.Drawing.Point(454, 326);
+            this.RemoveButton.Name = "RemoveButton";
+            this.RemoveButton.Size = new System.Drawing.Size(118, 47);
+            this.RemoveButton.TabIndex = 5;
+            this.RemoveButton.Text = "Remove";
+            this.RemoveButton.UseVisualStyleBackColor = true;
+            this.RemoveButton.Click += new System.EventHandler(this.button1_Click);
             // 
             // BMITitleLabel
             // 
             this.BMITitleLabel.AutoSize = true;
-            this.BMITitleLabel.Location = new System.Drawing.Point(16, 163);
+            this.BMITitleLabel.Location = new System.Drawing.Point(16, 148);
             this.BMITitleLabel.Name = "BMITitleLabel";
             this.BMITitleLabel.Size = new System.Drawing.Size(57, 26);
             this.BMITitleLabel.TabIndex = 6;
@@ -115,7 +122,7 @@
             // BMIValueLabel
             // 
             this.BMIValueLabel.AutoSize = true;
-            this.BMIValueLabel.Location = new System.Drawing.Point(74, 163);
+            this.BMIValueLabel.Location = new System.Drawing.Point(79, 148);
             this.BMIValueLabel.Name = "BMIValueLabel";
             this.BMIValueLabel.Size = new System.Drawing.Size(107, 26);
             this.BMIValueLabel.TabIndex = 7;
@@ -124,7 +131,7 @@
             // WhatMeansTitleLabel
             // 
             this.WhatMeansTitleLabel.AutoSize = true;
-            this.WhatMeansTitleLabel.Location = new System.Drawing.Point(16, 211);
+            this.WhatMeansTitleLabel.Location = new System.Drawing.Point(16, 174);
             this.WhatMeansTitleLabel.Name = "WhatMeansTitleLabel";
             this.WhatMeansTitleLabel.Size = new System.Drawing.Size(133, 26);
             this.WhatMeansTitleLabel.TabIndex = 8;
@@ -133,7 +140,7 @@
             // WhatMeansLabel
             // 
             this.WhatMeansLabel.AutoSize = true;
-            this.WhatMeansLabel.Location = new System.Drawing.Point(16, 237);
+            this.WhatMeansLabel.Location = new System.Drawing.Point(16, 200);
             this.WhatMeansLabel.Name = "WhatMeansLabel";
             this.WhatMeansLabel.Size = new System.Drawing.Size(87, 26);
             this.WhatMeansLabel.TabIndex = 9;
@@ -151,7 +158,7 @@
             // HeightLabel
             // 
             this.HeightLabel.AutoSize = true;
-            this.HeightLabel.Location = new System.Drawing.Point(103, 84);
+            this.HeightLabel.Location = new System.Drawing.Point(103, 66);
             this.HeightLabel.Name = "HeightLabel";
             this.HeightLabel.Size = new System.Drawing.Size(75, 26);
             this.HeightLabel.TabIndex = 12;
@@ -160,7 +167,7 @@
             // HeightTitleLabel
             // 
             this.HeightTitleLabel.AutoSize = true;
-            this.HeightTitleLabel.Location = new System.Drawing.Point(16, 84);
+            this.HeightTitleLabel.Location = new System.Drawing.Point(16, 66);
             this.HeightTitleLabel.Name = "HeightTitleLabel";
             this.HeightTitleLabel.Size = new System.Drawing.Size(81, 26);
             this.HeightTitleLabel.TabIndex = 11;
@@ -169,9 +176,9 @@
             // DeletePersonButton
             // 
             this.DeletePersonButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.DeletePersonButton.Location = new System.Drawing.Point(12, 336);
+            this.DeletePersonButton.Location = new System.Drawing.Point(155, 286);
             this.DeletePersonButton.Name = "DeletePersonButton";
-            this.DeletePersonButton.Size = new System.Drawing.Size(169, 33);
+            this.DeletePersonButton.Size = new System.Drawing.Size(137, 34);
             this.DeletePersonButton.TabIndex = 13;
             this.DeletePersonButton.Text = "Delete person";
             this.DeletePersonButton.UseVisualStyleBackColor = true;
@@ -181,16 +188,70 @@
             this.ChangePersonButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.ChangePersonButton.Location = new System.Drawing.Point(12, 286);
             this.ChangePersonButton.Name = "ChangePersonButton";
-            this.ChangePersonButton.Size = new System.Drawing.Size(169, 34);
+            this.ChangePersonButton.Size = new System.Drawing.Size(137, 34);
             this.ChangePersonButton.TabIndex = 14;
             this.ChangePersonButton.Text = "Change data";
             this.ChangePersonButton.UseVisualStyleBackColor = true;
             // 
-            // PersonMenuVIewForm
+            // ReturnButton
+            // 
+            this.ReturnButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.ReturnButton.Location = new System.Drawing.Point(12, 326);
+            this.ReturnButton.Name = "ReturnButton";
+            this.ReturnButton.Size = new System.Drawing.Size(137, 34);
+            this.ReturnButton.TabIndex = 15;
+            this.ReturnButton.Text = "Return";
+            this.ReturnButton.UseVisualStyleBackColor = true;
+            this.ReturnButton.Click += new System.EventHandler(this.ReturnButton_Click);
+            // 
+            // PersonNameLabel
+            // 
+            this.PersonNameLabel.AutoSize = true;
+            this.PersonNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold);
+            this.PersonNameLabel.Location = new System.Drawing.Point(126, 9);
+            this.PersonNameLabel.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.PersonNameLabel.Name = "PersonNameLabel";
+            this.PersonNameLabel.Size = new System.Drawing.Size(99, 31);
+            this.PersonNameLabel.TabIndex = 16;
+            this.PersonNameLabel.Text = "Name:";
+            // 
+            // NewWeightTextBox
+            // 
+            this.NewWeightTextBox.Location = new System.Drawing.Point(454, 286);
+            this.NewWeightTextBox.Name = "NewWeightTextBox";
+            this.NewWeightTextBox.Size = new System.Drawing.Size(118, 32);
+            this.NewWeightTextBox.TabIndex = 17;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
+            this.label1.Location = new System.Drawing.Point(339, 290);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(109, 24);
+            this.label1.TabIndex = 18;
+            this.label1.Text = "New weight";
+            // 
+            // ErrorInputLabel
+            // 
+            this.ErrorInputLabel.AutoSize = true;
+            this.ErrorInputLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
+            this.ErrorInputLabel.Location = new System.Drawing.Point(340, 272);
+            this.ErrorInputLabel.Name = "ErrorInputLabel";
+            this.ErrorInputLabel.Size = new System.Drawing.Size(29, 13);
+            this.ErrorInputLabel.TabIndex = 19;
+            this.ErrorInputLabel.Text = "Error";
+            // 
+            // PersonMenuViewForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(584, 381);
+            this.Controls.Add(this.ErrorInputLabel);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.NewWeightTextBox);
+            this.Controls.Add(this.PersonNameLabel);
+            this.Controls.Add(this.ReturnButton);
             this.Controls.Add(this.ChangePersonButton);
             this.Controls.Add(this.DeletePersonButton);
             this.Controls.Add(this.HeightLabel);
@@ -200,16 +261,17 @@
             this.Controls.Add(this.WhatMeansTitleLabel);
             this.Controls.Add(this.BMIValueLabel);
             this.Controls.Add(this.BMITitleLabel);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.RemoveButton);
             this.Controls.Add(this.AddButton);
             this.Controls.Add(this.WeightsTitleLabel);
             this.Controls.Add(this.WeightsListBox);
             this.Controls.Add(this.AgeTitleLabel);
-            this.Controls.Add(this.PersonDataLabel);
+            this.Controls.Add(this.PersonNameTitleLabel);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Margin = new System.Windows.Forms.Padding(6);
-            this.Name = "PersonMenuVIewForm";
+            this.Name = "PersonMenuViewForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "PersonMenuVIewForm";
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -218,12 +280,12 @@
 
         #endregion
 
-        private System.Windows.Forms.Label PersonDataLabel;
+        private System.Windows.Forms.Label PersonNameTitleLabel;
         private System.Windows.Forms.Label AgeTitleLabel;
         private System.Windows.Forms.ListBox WeightsListBox;
         private System.Windows.Forms.Label WeightsTitleLabel;
         private System.Windows.Forms.Button AddButton;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button RemoveButton;
         private System.Windows.Forms.Label BMITitleLabel;
         private System.Windows.Forms.Label BMIValueLabel;
         private System.Windows.Forms.Label WhatMeansTitleLabel;
@@ -233,5 +295,10 @@
         private System.Windows.Forms.Label HeightTitleLabel;
         private System.Windows.Forms.Button DeletePersonButton;
         private System.Windows.Forms.Button ChangePersonButton;
+        private System.Windows.Forms.Button ReturnButton;
+        private System.Windows.Forms.Label PersonNameLabel;
+        private System.Windows.Forms.TextBox NewWeightTextBox;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label ErrorInputLabel;
     }
 }
