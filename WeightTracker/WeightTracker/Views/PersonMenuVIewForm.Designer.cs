@@ -41,8 +41,6 @@
             this.AgeLabel = new System.Windows.Forms.Label();
             this.HeightLabel = new System.Windows.Forms.Label();
             this.HeightTitleLabel = new System.Windows.Forms.Label();
-            this.DeletePersonButton = new System.Windows.Forms.Button();
-            this.ChangePersonButton = new System.Windows.Forms.Button();
             this.ReturnButton = new System.Windows.Forms.Button();
             this.PersonNameLabel = new System.Windows.Forms.Label();
             this.NewWeightTextBox = new System.Windows.Forms.TextBox();
@@ -131,11 +129,12 @@
             // WhatMeansTitleLabel
             // 
             this.WhatMeansTitleLabel.AutoSize = true;
+            this.WhatMeansTitleLabel.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.WhatMeansTitleLabel.Location = new System.Drawing.Point(16, 174);
             this.WhatMeansTitleLabel.Name = "WhatMeansTitleLabel";
-            this.WhatMeansTitleLabel.Size = new System.Drawing.Size(133, 26);
+            this.WhatMeansTitleLabel.Size = new System.Drawing.Size(200, 26);
             this.WhatMeansTitleLabel.TabIndex = 8;
-            this.WhatMeansTitleLabel.Text = "Co oznacza:";
+            this.WhatMeansTitleLabel.Text = "What does it mean:";
             // 
             // WhatMeansLabel
             // 
@@ -172,26 +171,6 @@
             this.HeightTitleLabel.Size = new System.Drawing.Size(81, 26);
             this.HeightTitleLabel.TabIndex = 11;
             this.HeightTitleLabel.Text = "Height:";
-            // 
-            // DeletePersonButton
-            // 
-            this.DeletePersonButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.DeletePersonButton.Location = new System.Drawing.Point(155, 286);
-            this.DeletePersonButton.Name = "DeletePersonButton";
-            this.DeletePersonButton.Size = new System.Drawing.Size(137, 34);
-            this.DeletePersonButton.TabIndex = 13;
-            this.DeletePersonButton.Text = "Delete person";
-            this.DeletePersonButton.UseVisualStyleBackColor = true;
-            // 
-            // ChangePersonButton
-            // 
-            this.ChangePersonButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.ChangePersonButton.Location = new System.Drawing.Point(12, 286);
-            this.ChangePersonButton.Name = "ChangePersonButton";
-            this.ChangePersonButton.Size = new System.Drawing.Size(137, 34);
-            this.ChangePersonButton.TabIndex = 14;
-            this.ChangePersonButton.Text = "Change data";
-            this.ChangePersonButton.UseVisualStyleBackColor = true;
             // 
             // ReturnButton
             // 
@@ -252,8 +231,6 @@
             this.Controls.Add(this.NewWeightTextBox);
             this.Controls.Add(this.PersonNameLabel);
             this.Controls.Add(this.ReturnButton);
-            this.Controls.Add(this.ChangePersonButton);
-            this.Controls.Add(this.DeletePersonButton);
             this.Controls.Add(this.HeightLabel);
             this.Controls.Add(this.HeightTitleLabel);
             this.Controls.Add(this.AgeLabel);
@@ -294,8 +271,6 @@
         private System.Windows.Forms.Label AgeLabel;
         private System.Windows.Forms.Label HeightLabel;
         private System.Windows.Forms.Label HeightTitleLabel;
-        private System.Windows.Forms.Button DeletePersonButton;
-        private System.Windows.Forms.Button ChangePersonButton;
         private System.Windows.Forms.Button ReturnButton;
         private System.Windows.Forms.Label PersonNameLabel;
         private System.Windows.Forms.TextBox NewWeightTextBox;
