@@ -75,13 +75,18 @@ namespace WeightTracker
                 ErrorInputLabel.Text = ex.Message;
             }
         }
-        private async void PersonsViewForm_FormClosing(object sender, FormClosingEventArgs e)
+        private void PersonsViewForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (e.CloseReason == CloseReason.UserClosing)
-                await _fileAccess.SavePersonAsync(PersonRecords);
+                SaveOnClose();
 
             if (e.CloseReason == CloseReason.WindowsShutDown)
-                await _fileAccess.SavePersonAsync(PersonRecords);
+                SaveOnClose();
+        }
+
+        public async void SaveOnClose()
+        {
+            await Task.Run(() => _fileAccess.SavePersonAsync(PersonRecords));
         }
 
         private void SelectPersonButton_Click(object sender, EventArgs e)

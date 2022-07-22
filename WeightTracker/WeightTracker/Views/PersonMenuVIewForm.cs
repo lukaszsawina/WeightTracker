@@ -69,5 +69,12 @@ namespace WeightTracker.Views
             _currentPerson.WeightRecords.Remove((WeightModel)WeightsListBox.SelectedItem);
             WireUp();
         }
+
+        private void PersonMenuViewForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            _personViewForm.Close();
+        }
+
+        private void 
     }
 }

@@ -273,6 +273,7 @@
             this.Name = "PersonMenuViewForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "PersonMenuVIewForm";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.PersonMenuViewForm_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();
 
