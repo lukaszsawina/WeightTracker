@@ -2,6 +2,8 @@
 using System.Windows.Forms;
 using WeightTracker.Utilities;
 using WeightTrackerLibrary.Models;
+using System.Linq;
+using System.Collections.Generic;
 
 namespace WeightTracker.Views
 {
@@ -36,6 +38,9 @@ namespace WeightTracker.Views
             WeightsListBox.DataSource = null;
             WeightsListBox.DataSource = _currentPerson.WeightRecords;
             WeightsListBox.DisplayMember = "WeightData";
+
+            SetCategory();
+            BMIValueLabel.Text = BMICalculation().ToString();
         }
 
         private void ReturnButton_Click(object sender, EventArgs e)
@@ -75,6 +80,31 @@ namespace WeightTracker.Views
             _personViewForm.Close();
         }
 
-        private void 
+        private float BMICalculation()
+        {
+            float output = _currentPerson.WeightRecords.OrderByDescending(t => t.DateWhenAdd).Select(x => x.Weight).FirstOrDefault()/(_currentPerson.Height*_currentPerson.Height/10000);
+            return output;
+        }
+
+        private void SetCategory()
+        {
+            IDictionary<float, string> Category = new Dictionary<float, string>();
+
+            Category.Add(16.0f, "Wygłodzenie");
+            Category.Add(16.99f, "Wychudzenie");
+            Category.Add(18.49f, "Niedowaga");
+            Category.Add(24.99f, "Dobra masa ciała");
+            Category.Add(29.99f, "Nadwaga");
+            Category.Add(34.99f, "Otyłość I stopnia");
+            Category.Add(39.99f, "Otyłość II stopnia");
+
+            float BMI = BMICalculation();
+
+            if (BMI < 40.0f)
+                WhatMeansLabel.Text = Category.Where(x => BMI <= x.Key).Select(x => x.Value).FirstOrDefault();
+            else
+                WhatMeansLabel.Text = "Otyłość III stopnia";
+        }
+
     }
 }
