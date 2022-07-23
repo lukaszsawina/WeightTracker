@@ -8,7 +8,7 @@ using WeightTrackerLibrary.Models;
 
 namespace WeightTracker.Controller
 {
-    public class FileAccessor : IFileAccessor
+    public class FileAccessor : IAccessor
     {
         private readonly string PersonFile = @"C:\dev\C#\WeightTracker_WinFormApp\WeightTracker\Person.csv";
         private readonly string WeightFile = @"C:\dev\C#\WeightTracker_WinFormApp\WeightTracker\Weight.csv";

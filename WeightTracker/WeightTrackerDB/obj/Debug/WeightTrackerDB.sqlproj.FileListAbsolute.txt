@@ -1,0 +1,10 @@
+C:\dev\C#\WeightTracker_WinFormApp\WeightTracker\WeightTrackerDB\bin\Debug\WeightTrackerDB.dacpac
+C:\dev\C#\WeightTracker_WinFormApp\WeightTracker\WeightTrackerDB\bin\Debug\WeightTrackerDB.dll
+C:\dev\C#\WeightTracker_WinFormApp\WeightTracker\WeightTrackerDB\bin\Debug\WeightTrackerDB.pdb
+C:\dev\C#\WeightTracker_WinFormApp\WeightTracker\WeightTrackerDB\obj\Debug\WeightTrackerDB.sqlproj.AssemblyReference.cache
+C:\dev\C#\WeightTracker_WinFormApp\WeightTracker\WeightTrackerDB\obj\Debug\Model.xml
+C:\dev\C#\WeightTracker_WinFormApp\WeightTracker\WeightTrackerDB\obj\Debug\refactor.xml
+C:\dev\C#\WeightTracker_WinFormApp\WeightTracker\WeightTrackerDB\obj\Debug\postdeploy.sql
+C:\dev\C#\WeightTracker_WinFormApp\WeightTracker\WeightTrackerDB\obj\Debug\predeploy.sql
+C:\dev\C#\WeightTracker_WinFormApp\WeightTracker\WeightTrackerDB\obj\Debug\WeightTrackerDB.dll
+C:\dev\C#\WeightTracker_WinFormApp\WeightTracker\WeightTrackerDB\obj\Debug\WeightTrackerDB.pdb

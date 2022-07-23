@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeightTracker", "WeightTrac
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeightTrackerLibrary", "WeightTrackerLibrary\WeightTrackerLibrary.csproj", "{FE986053-00FA-4E7F-9B08-C1DA295B3224}"
 EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "WeightTrackerDB", "WeightTrackerDB\WeightTrackerDB.sqlproj", "{A9293436-EBDF-4370-A6CC-E490DA91A2AD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,12 @@ Global
 		{FE986053-00FA-4E7F-9B08-C1DA295B3224}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FE986053-00FA-4E7F-9B08-C1DA295B3224}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FE986053-00FA-4E7F-9B08-C1DA295B3224}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A9293436-EBDF-4370-A6CC-E490DA91A2AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A9293436-EBDF-4370-A6CC-E490DA91A2AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A9293436-EBDF-4370-A6CC-E490DA91A2AD}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{A9293436-EBDF-4370-A6CC-E490DA91A2AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A9293436-EBDF-4370-A6CC-E490DA91A2AD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A9293436-EBDF-4370-A6CC-E490DA91A2AD}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

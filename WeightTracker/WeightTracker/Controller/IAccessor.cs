@@ -5,7 +5,7 @@ using WeightTrackerLibrary.Models;
 
 namespace WeightTracker.Controller
 {
-    public interface IFileAccessor
+    public interface IAccessor
     {
         Task LoadPersonAsync(List<IPersonModel> listOfPerson, IProgress<int> progress);
         Task SavePersonAsync(List<IPersonModel> listOfPerson);

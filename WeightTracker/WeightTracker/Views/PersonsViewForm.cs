@@ -12,7 +12,7 @@ namespace WeightTracker
     public partial class PersonsViewForm : Form
     {
         private IValidator _validator;
-        private IFileAccessor _fileAccess;
+        private IAccessor _fileAccess;
         private List<IPersonModel> PersonRecords = new List<IPersonModel>();
 
         public async void InitializeData()
@@ -29,7 +29,7 @@ namespace WeightTracker
                 LoadDataProgressBar.Visible = false;
             WireUp();
         }
-        public PersonsViewForm(IFileAccessor fileAccess, IValidator validator)
+        public PersonsViewForm(IAccessor fileAccess, IValidator validator)
         {
             _fileAccess = fileAccess;
             _validator = validator;

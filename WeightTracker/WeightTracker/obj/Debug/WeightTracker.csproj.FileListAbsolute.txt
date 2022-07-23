@@ -30,3 +30,5 @@ C:\dev\C#\WeightTracker_WinFormApp\WeightTracker\WeightTracker\bin\Debug\System.
 C:\dev\C#\WeightTracker_WinFormApp\WeightTracker\WeightTracker\obj\Debug\WeightTracker.Views.PersonMenuVIewForm.resources
 C:\dev\C#\WeightTracker_WinFormApp\WeightTracker\WeightTracker\obj\Debug\WeightTracker.PersonsViewForm.resources
 C:\dev\C#\WeightTracker_WinFormApp\WeightTracker\WeightTracker\obj\Debug\WeightTracker.Views.ChangePersonDataViewForm.resources
+C:\dev\C#\WeightTracker_WinFormApp\WeightTracker\WeightTracker\bin\Debug\Dapper.dll
+C:\dev\C#\WeightTracker_WinFormApp\WeightTracker\WeightTracker\bin\Debug\Dapper.xml

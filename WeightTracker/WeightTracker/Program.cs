@@ -27,7 +27,7 @@ namespace WeightTracker
             {
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
-                Application.Run(new PersonsViewForm(Container.Resolve<IFileAccessor>(), Container.Resolve<IValidator>()));
+                Application.Run(new PersonsViewForm(Container.Resolve<IAccessor>(), Container.Resolve<IValidator>()));
             }            
         }
         public static IContainer Configure()
@@ -36,7 +36,7 @@ namespace WeightTracker
 
             //Template for single class
             builder.RegisterType<Validator>().As<IValidator>();
-            builder.RegisterType<FileAccessor>().As<IFileAccessor>();
+            builder.RegisterType<FileAccessor>().As<IAccessor>();
 
 
             builder.RegisterAssemblyTypes(Assembly.Load(nameof(WeightTracker)))
