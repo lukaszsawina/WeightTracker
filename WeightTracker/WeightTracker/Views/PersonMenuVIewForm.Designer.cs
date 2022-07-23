@@ -76,6 +76,7 @@
             this.WeightsListBox.Name = "WeightsListBox";
             this.WeightsListBox.Size = new System.Drawing.Size(232, 229);
             this.WeightsListBox.TabIndex = 2;
+            this.WeightsListBox.SelectedIndexChanged += new System.EventHandler(this.WeightsListBox_SelectedIndexChanged);
             // 
             // WeightsTitleLabel
             // 
@@ -99,6 +100,7 @@
             // 
             // RemoveButton
             // 
+            this.RemoveButton.Enabled = false;
             this.RemoveButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.RemoveButton.Location = new System.Drawing.Point(454, 326);
             this.RemoveButton.Name = "RemoveButton";

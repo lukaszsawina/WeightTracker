@@ -67,6 +67,7 @@
             // 
             // SelectPersonButton
             // 
+            this.SelectPersonButton.Enabled = false;
             this.SelectPersonButton.Location = new System.Drawing.Point(308, 304);
             this.SelectPersonButton.Name = "SelectPersonButton";
             this.SelectPersonButton.Size = new System.Drawing.Size(232, 34);
@@ -93,6 +94,7 @@
             this.PersonListBox.Name = "PersonListBox";
             this.PersonListBox.Size = new System.Drawing.Size(232, 184);
             this.PersonListBox.TabIndex = 13;
+            this.PersonListBox.SelectedIndexChanged += new System.EventHandler(this.PersonListBox_SelectedIndexChanged);
             // 
             // NameLabel
             // 
@@ -183,6 +185,7 @@
             this.LoadDataProgressBar.Name = "LoadDataProgressBar";
             this.LoadDataProgressBar.Size = new System.Drawing.Size(232, 13);
             this.LoadDataProgressBar.TabIndex = 15;
+            this.LoadDataProgressBar.Visible = false;
             // 
             // PersonsViewForm
             // 

@@ -38,6 +38,7 @@ namespace WeightTracker
             builder.RegisterType<Validator>().As<IValidator>();
             builder.RegisterType<FileAccessor>().As<IFileAccessor>();
 
+
             builder.RegisterAssemblyTypes(Assembly.Load(nameof(WeightTracker)))
                 .Where(t => t.Namespace.Contains("Utilities"))
                 .As(t => t.GetInterfaces().FirstOrDefault(i => i.Name == "I" + t.Name));

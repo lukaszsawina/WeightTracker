@@ -15,6 +15,9 @@ namespace WeightTracker.Controller
 
         public async Task LoadPersonAsync(List<IPersonModel> listOfPerson, IProgress<int> progress)
         {
+            if (!File.Exists(PersonFile))
+                return;
+
             List<IPersonModel> LoadedPersons = await Task.Run(() => LoadPerson(PersonFile));
             foreach(var person in LoadedPersons)
             {

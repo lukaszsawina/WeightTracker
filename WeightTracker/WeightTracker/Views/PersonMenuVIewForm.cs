@@ -115,5 +115,12 @@ namespace WeightTracker.Views
                 WhatMeansLabel.Text = "Obese (Class III)";
         }
 
+        private void WeightsListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (WeightsListBox.SelectedItems.Count == 0)
+                RemoveButton.Enabled = false;
+            else
+                RemoveButton.Enabled = true;
+        }
     }
 }

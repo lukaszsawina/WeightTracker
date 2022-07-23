@@ -95,5 +95,14 @@ namespace WeightTracker
             this.Hide();
             personMenuForm.Show();
         }
+
+        private void PersonListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (PersonListBox.SelectedItems.Count == 0)
+                SelectPersonButton.Enabled = false;
+            else
+                SelectPersonButton.Enabled = true;
+
+        }
     }
 }
