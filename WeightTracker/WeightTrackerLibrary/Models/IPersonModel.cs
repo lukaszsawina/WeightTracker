@@ -10,5 +10,7 @@ namespace WeightTrackerLibrary.Models
         int Id { get; }
         string Name { get; }
         List<WeightModel> WeightRecords { get; set; }
+
+        void ChangeData(string name, int age, int height);
     }
 }

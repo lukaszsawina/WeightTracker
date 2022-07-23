@@ -46,6 +46,7 @@
             this.NewWeightTextBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.ErrorInputLabel = new System.Windows.Forms.Label();
+            this.ChangeButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // PersonNameTitleLabel
@@ -223,11 +224,23 @@
             this.ErrorInputLabel.TabIndex = 19;
             this.ErrorInputLabel.Text = "Error";
             // 
+            // ChangeButton
+            // 
+            this.ChangeButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.ChangeButton.Location = new System.Drawing.Point(12, 280);
+            this.ChangeButton.Name = "ChangeButton";
+            this.ChangeButton.Size = new System.Drawing.Size(137, 34);
+            this.ChangeButton.TabIndex = 20;
+            this.ChangeButton.Text = "Change";
+            this.ChangeButton.UseVisualStyleBackColor = true;
+            this.ChangeButton.Click += new System.EventHandler(this.ChangeButton_Click);
+            // 
             // PersonMenuViewForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(584, 381);
+            this.Controls.Add(this.ChangeButton);
             this.Controls.Add(this.ErrorInputLabel);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.NewWeightTextBox);
@@ -252,6 +265,7 @@
             this.Name = "PersonMenuViewForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "PersonMenuVIewForm";
+            this.Activated += new System.EventHandler(this.PersonMenuViewForm_Activated);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.PersonMenuViewForm_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -278,5 +292,6 @@
         private System.Windows.Forms.TextBox NewWeightTextBox;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label ErrorInputLabel;
+        private System.Windows.Forms.Button ChangeButton;
     }
 }

@@ -21,9 +21,17 @@ namespace WeightTrackerLibrary.Models
             }
         }
 
+
         public PersonModel(int id, string name, int age, int height)
         {
             Id = id;
+            Name = name;
+            Age = age;
+            Height = height;
+        }
+
+        public void ChangeData(string name, int age, int height)
+        {
             Name = name;
             Age = age;
             Height = height;

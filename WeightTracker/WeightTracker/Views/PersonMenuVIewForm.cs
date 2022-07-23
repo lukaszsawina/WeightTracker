@@ -4,6 +4,7 @@ using WeightTracker.Utilities;
 using WeightTrackerLibrary.Models;
 using System.Linq;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace WeightTracker.Views
 {
@@ -121,6 +122,17 @@ namespace WeightTracker.Views
                 RemoveButton.Enabled = false;
             else
                 RemoveButton.Enabled = true;
+        }
+
+        private void ChangeButton_Click(object sender, EventArgs e)
+        {
+            var changeForm = new ChangePersonDataViewForm(_validator, _currentPerson);
+            changeForm.Show();
+        }
+
+        private void PersonMenuViewForm_Activated(object sender, EventArgs e)
+        {
+            InitializeData();
         }
     }
 }
