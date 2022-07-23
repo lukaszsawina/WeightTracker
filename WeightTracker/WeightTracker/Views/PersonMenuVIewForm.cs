@@ -39,6 +39,7 @@ namespace WeightTracker.Views
             WeightsListBox.DataSource = null;
             WeightsListBox.DataSource = _currentPerson.WeightRecords;
             WeightsListBox.DisplayMember = "WeightData";
+           
 
             if (_currentPerson.WeightRecords.Count == 0)
             {
@@ -56,6 +57,8 @@ namespace WeightTracker.Views
         private void ReturnButton_Click(object sender, EventArgs e)
         {
             this.Hide();
+
+
             _personViewForm.Show();
         }
 
