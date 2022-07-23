@@ -132,7 +132,7 @@ namespace WeightTracker.Views
 
         private void PersonMenuViewForm_Activated(object sender, EventArgs e)
         {
-            InitializeData();
+            WireUp();
         }
     }
 }
