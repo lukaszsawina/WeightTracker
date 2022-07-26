@@ -86,7 +86,7 @@ namespace WeightTracker
 
         public async void SaveOnClose()
         {
-            await Task.Run(() => _fileAccess.SavePersonAsync(PersonRecords));
+            await Task.Run(() => _fileAccess.SaveDatanAsync(PersonRecords));
         }
 
         private void SelectPersonButton_Click(object sender, EventArgs e)

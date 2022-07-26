@@ -54,11 +54,11 @@ namespace WeightTracker.Controller
             }
             
         }
-        public async Task SavePersonAsync(List<IPersonModel> listOfPerson)
+        public async Task SaveDatanAsync(List<IPersonModel> listOfPerson)
         {
             await SavePersonAsync(PersonFile, WeightFile, listOfPerson);
-
         }
+
         private async Task SavePersonAsync(string personFile, string weightFile, List<IPersonModel> listOfPerson)
         {
             using (StreamWriter sw = new StreamWriter(personFile))
@@ -86,5 +86,7 @@ namespace WeightTracker.Controller
                 }
             }
         }
+
+
     }
 }

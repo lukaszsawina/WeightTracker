@@ -12,7 +12,7 @@ namespace WeightTrackerLibrary.Models
         public string Name { get; private set; }
         public int Age { get; private set; }
         public int Height { get; private set; }
-        public List<WeightModel> WeightRecords { get; set; } = new List<WeightModel>();
+        public List<IWeightModel> WeightRecords { get; set; } = new List<IWeightModel>();
         public string FullName
         {
             get

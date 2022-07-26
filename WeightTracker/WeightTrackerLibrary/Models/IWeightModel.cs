@@ -7,5 +7,6 @@ namespace WeightTrackerLibrary.Models
         DateTime DateWhenAdd { get; }
         int Id { get; }
         float Weight { get; }
+        string WeightData { get; }
     }
 }

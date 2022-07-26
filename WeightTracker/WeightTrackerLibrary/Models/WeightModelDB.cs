@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WeightTrackerLibrary.Models
 {
-    public class WeightModelDB : IWeightModel
+    public class WeightModelDB
     {
         public int PersonId { get; set; }
         public int Id { get; set; }

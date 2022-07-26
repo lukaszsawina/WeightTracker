@@ -44,7 +44,9 @@
     <Compile Include="Models\IPersonModel.cs" />
     <Compile Include="Models\IWeightModel.cs" />
     <Compile Include="Models\PersonModel.cs" />
+    <Compile Include="Models\PersonModelDB.cs" />
     <Compile Include="Models\WeightModel.cs" />
+    <Compile Include="Models\WeightModelDB.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
