@@ -8,9 +8,9 @@ namespace WeightTrackerLibrary.Models
 {
     public class WeightModel : IWeightModel
     {
-        public int Id { get; private set; }
-        public float Weight { get; private set; }
-        public DateTime DateWhenAdd { get; private set; }
+        public int Id { get; set; }
+        public float Weight { get; set; }
+        public DateTime DateWhenAdd { get; set; }
         public string WeightData 
         {
             get
@@ -24,11 +24,17 @@ namespace WeightTrackerLibrary.Models
             Weight = weight;
             DateWhenAdd = DateTime.Now;
         }
-        public WeightModel(int id, float weight, DateTime datWhenAdd)
+        public WeightModel(int id, float weight, DateTime dateWhenAdd)
         {
             Id = id;
             Weight = weight;
-            DateWhenAdd = datWhenAdd;
+            DateWhenAdd = dateWhenAdd;
+        }
+        public WeightModel(int id, double weight, DateTime dateWhenAdd)
+        {
+            Id = id;
+            Weight = (float)weight;
+            DateWhenAdd = dateWhenAdd;
         }
     }
 }

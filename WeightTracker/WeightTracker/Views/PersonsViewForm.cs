@@ -12,7 +12,7 @@ namespace WeightTracker
     public partial class PersonsViewForm : Form
     {
         private IValidator _validator;
-        private IAccessor _fileAccess;
+        private IAccessor _access;
         private List<IPersonModel> PersonRecords = new List<IPersonModel>();
 
         public async void InitializeData()
@@ -24,14 +24,14 @@ namespace WeightTracker
                 progresValue = percent;
             });
 
-            await Task.Run(() => _fileAccess.LoadPersonAsync(PersonRecords, progress));
+            await Task.Run(() => _access.LoadPersonAsync(PersonRecords, progress));
             if (progresValue == 100)
                 LoadDataProgressBar.Visible = false;
             WireUp();
         }
         public PersonsViewForm(IAccessor fileAccess, IValidator validator)
         {
-            _fileAccess = fileAccess;
+            _access = fileAccess;
             _validator = validator;
 
             InitializeComponent();
@@ -54,7 +54,7 @@ namespace WeightTracker
             HeightTextBox.Text = "";
             ErrorInputLabel.Text = "";
         }
-        private void NewPersonAddButton_Click(object sender, EventArgs e)
+        private async void NewPersonAddButton_Click(object sender, EventArgs e)
         {
             try
             {
@@ -67,6 +67,8 @@ namespace WeightTracker
                 IPersonModel newPerson = new PersonModel(newId, name, Int32.Parse(age), Int32.Parse(height));
                 PersonRecords.Add(newPerson);
 
+                await Task.Run(() => _access.SaveNewPersonAsync(newPerson));
+
                 WireUp();
                 ClearInputs();
             }
@@ -77,21 +79,21 @@ namespace WeightTracker
         }
         private void PersonsViewForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (e.CloseReason == CloseReason.UserClosing)
-                SaveOnClose();
+            //if (e.CloseReason == CloseReason.UserClosing)
+            //    SaveOnClose();
 
-            if (e.CloseReason == CloseReason.WindowsShutDown)
-                SaveOnClose();
+            //if (e.CloseReason == CloseReason.WindowsShutDown)
+            //    SaveOnClose();
         }
 
         public async void SaveOnClose()
         {
-            await Task.Run(() => _fileAccess.SaveDatanAsync(PersonRecords));
+            //await Task.Run(() => _access.S(PersonRecords));
         }
 
         private void SelectPersonButton_Click(object sender, EventArgs e)
         {
-            var personMenuForm = new PersonMenuViewForm((PersonModel)PersonListBox.SelectedItem, _validator, this);
+            var personMenuForm = new PersonMenuViewForm((PersonModel)PersonListBox.SelectedItem, _validator, _access, this);
             this.Hide();
             personMenuForm.Show();
         }

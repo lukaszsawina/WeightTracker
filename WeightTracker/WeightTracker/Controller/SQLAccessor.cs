@@ -14,84 +14,47 @@ namespace WeightTracker.Controller
         public async Task LoadPersonAsync(List<IPersonModel> listOfPerson, IProgress<int> progress)
         {
             List<IPersonModel> LoadedPersons = await Task.Run(() => LoadPerson());
-            foreach (var person in LoadedPersons)
-            {
-                listOfPerson.Add(person);
-                var progressComplete = listOfPerson.Count * 100 / LoadedPersons.Count;
-                progress.Report(progressComplete);
-            }
-
+            UpdateprogessBar(listOfPerson, LoadedPersons, progress);
             await Task.Run(() => LoadWeight(listOfPerson));
         }
         private List<IPersonModel> LoadPerson()
         {
             using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(Helper.CnnVal("WeightsDB")))
             {
-                var returnedList = connection.Query<PersonModelDB>("Select * From Persons").ToList();
-                var output = new List<IPersonModel>();
-                foreach (var person in returnedList)
-                    output.Add(new PersonModel(person.Id, person.Name, person.Age, person.Height));
-
+                var output = connection.Query<PersonModel>("SELECT * FROM PersonView").ToList<IPersonModel>();
                 return output;
             }
         }
-
+        private void UpdateprogessBar(List<IPersonModel> listOfPerson, List<IPersonModel> loadedPersons, IProgress<int> progress)
+        {
+            foreach (var person in loadedPersons)
+            {
+                listOfPerson.Add(person);
+                progress.Report(listOfPerson.Count * 100 / loadedPersons.Count);
+            }
+        }
         private void LoadWeight(List<IPersonModel> listOfPerson)
         {
-            List<WeightModelDB> output = new List<WeightModelDB>();
             using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(Helper.CnnVal("WeightsDB")))
             {
-                output = connection.Query<WeightModelDB>("Select * From Weights").ToList();
-            }
-            foreach (var w in output)
-            {
-                IWeightModel newWeight = new WeightModel(w.Id, w.Weight, w.DateWhenAdd);
-                listOfPerson.Where(x => x.Id == w.PersonId).FirstOrDefault().WeightRecords.Add((WeightModel)newWeight);
-            }
-
-        }
-        public async Task SaveDatanAsync(List<IPersonModel> listOfPerson)
-        {
-            await SavePersonAsync(listOfPerson);
-            await SaveWeightsAsync(listOfPerson);
-
-        }
-        private async Task SavePersonAsync(List<IPersonModel> listOfPerson)
-        {
-
-            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(Helper.CnnVal("WeightsDB")))
-            {
-                foreach (var person in listOfPerson)
-                {
-                    PersonModelDB newPewron = new PersonModelDB( person.Id, person.Name, person.Age, person.Height );
-                    string processQuery = "INSERT INTO Persons VALUES (@Id, @Name, @Age, @Weight)";
-                    await connection.ExecuteAsync(processQuery, newPewron);
-                }
-            }
-
-        }
-
-        private async Task SaveWeightsAsync(List<IPersonModel> listOfPerson)
-        {
-
-            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(Helper.CnnVal("WeightsDB")))
-            {
-                foreach (var person in listOfPerson)
-                {
-                    int personId = person.Id;
-                    foreach (var weight in person.WeightRecords)
-                        await connection.QueryAsync("insert into Weights(PersonId, Id, Weight, DateWhenAdd) values (@PersonId, @Id, @Weight, @DateWhenAdd)", new { personId, weight.Id, weight.Weight, weight.DateWhenAdd });
-                }
+                foreach (var p in listOfPerson)
+                    p.WeightRecords = connection.Query<WeightModel>("sp_SelectWeightsByPerson", new {PersonId = p.Id}, commandType: CommandType.StoredProcedure ).ToList<IWeightModel>();
             }
         }
 
-        private async Task ResetTable(string name)
+        public async Task SaveNewPersonAsync(IPersonModel p)
         {
             using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(Helper.CnnVal("WeightsDB")))
             {
-                await connection.QueryAsync($"TRUNCATE TABLE {name}");
+                await connection.ExecuteAsync("sp_NewPerson", new { Id = p.Id, Name = p.Name, Age = p.Age, Height = p.Height }, commandType: CommandType.StoredProcedure);
             }
         }
-
+        public async Task SaveNewWeightAsync(int PersonId, IWeightModel weight)
+        {
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(Helper.CnnVal("WeightsDB")))
+            {
+                await connection.ExecuteAsync("sp_NewWeight", new { PersonId = PersonId, Id = weight.Id, Weight = weight.Weight, DateWhenAdd = weight.DateWhenAdd }, commandType: CommandType.StoredProcedure);
+            }
+        }
     }
 }

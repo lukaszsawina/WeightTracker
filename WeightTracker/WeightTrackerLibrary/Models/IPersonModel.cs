@@ -4,13 +4,12 @@ namespace WeightTrackerLibrary.Models
 {
     public interface IPersonModel
     {
-        int Age { get; }
+        int Id { get; set; }
+        string Name { get; set; }
+        int Age { get; set; }
+        int Height { get; set; }
         string FullName { get; }
-        int Height { get; }
-        int Id { get; }
-        string Name { get; }
         List<IWeightModel> WeightRecords { get; set; }
-
         void ChangeData(string name, int age, int height);
     }
 }

@@ -4,9 +4,9 @@ namespace WeightTrackerLibrary.Models
 {
     public interface IWeightModel
     {
-        DateTime DateWhenAdd { get; }
-        int Id { get; }
-        float Weight { get; }
+        int Id { get; set; }
+        float Weight { get; set; }
+        DateTime DateWhenAdd { get; set; }
         string WeightData { get; }
     }
 }

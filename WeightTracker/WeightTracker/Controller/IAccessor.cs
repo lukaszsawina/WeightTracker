@@ -8,6 +8,7 @@ namespace WeightTracker.Controller
     public interface IAccessor
     {
         Task LoadPersonAsync(List<IPersonModel> listOfPerson, IProgress<int> progress);
-        Task SaveDatanAsync(List<IPersonModel> listOfPerson);
+        Task SaveNewPersonAsync(IPersonModel person);
+        Task SaveNewWeightAsync(int PersonId, IWeightModel weight);
     }
 }

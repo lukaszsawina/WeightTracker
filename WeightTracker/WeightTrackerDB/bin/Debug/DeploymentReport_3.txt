@@ -1,0 +1,17 @@
+﻿** Highlights
+     Tables that will be rebuilt
+       None
+     Clustered indexes that will be dropped
+       [dbo].[PK_Weights] on [dbo].[Weights]
+     Clustered indexes that will be created
+       None
+     Possible data issues
+       None
+
+** User actions
+     Drop
+       [dbo].[PK_Weights] (Primary Key)
+     Alter
+       [dbo].[sp_SelectWeightsByPerson] (Procedure)
+
+** Supporting actions

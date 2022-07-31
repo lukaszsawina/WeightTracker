@@ -25,7 +25,7 @@ namespace WeightTracker.Controller
                 var progressComplete = listOfPerson.Count * 100 / LoadedPersons.Count;
                 progress.Report(progressComplete);
             }
-            await Task.Run(() => LoadWeight(WeightFile, listOfPerson));
+            //await Task.Run(() => LoadWeight(WeightFile, listOfPerson));
         }
         private List<IPersonModel> LoadPerson(string file)
         {
@@ -87,6 +87,14 @@ namespace WeightTracker.Controller
             }
         }
 
+        public Task SaveNewPersonAsync(IPersonModel person)
+        {
+            throw new NotImplementedException();
+        }
 
+        public Task SaveNewWeightAsync(int PersonId, IWeightModel weight)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

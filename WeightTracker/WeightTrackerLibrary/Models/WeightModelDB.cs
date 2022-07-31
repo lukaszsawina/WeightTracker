@@ -13,6 +13,5 @@ namespace WeightTrackerLibrary.Models
         public float Weight { get; set; }
         public DateTime DateWhenAdd { get; set; }
 
-
     }
 }

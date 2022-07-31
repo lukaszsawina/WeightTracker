@@ -4,3 +4,8 @@ C:\dev\C#\WeightTracker_WinFormApp\WeightTracker\WeightTrackerLibrary\obj\Debug\
 C:\dev\C#\WeightTracker_WinFormApp\WeightTracker\WeightTrackerLibrary\obj\Debug\WeightTrackerLibrary.csproj.CoreCompileInputs.cache
 C:\dev\C#\WeightTracker_WinFormApp\WeightTracker\WeightTrackerLibrary\obj\Debug\WeightTrackerLibrary.dll
 C:\dev\C#\WeightTracker_WinFormApp\WeightTracker\WeightTrackerLibrary\obj\Debug\WeightTrackerLibrary.pdb
+C:\dev\C#\WeightTracker_WinFormApp\WeightTracker\WeightTrackerLibrary\bin\Debug\Dapper.Contrib.dll
+C:\dev\C#\WeightTracker_WinFormApp\WeightTracker\WeightTrackerLibrary\bin\Debug\Dapper.dll
+C:\dev\C#\WeightTracker_WinFormApp\WeightTracker\WeightTrackerLibrary\bin\Debug\Dapper.xml
+C:\dev\C#\WeightTracker_WinFormApp\WeightTracker\WeightTrackerLibrary\bin\Debug\Dapper.Contrib.xml
+C:\dev\C#\WeightTracker_WinFormApp\WeightTracker\WeightTrackerLibrary\obj\Debug\WeightTrackerLibrary.csproj.CopyComplete

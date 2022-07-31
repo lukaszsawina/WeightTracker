@@ -5,6 +5,7 @@ using WeightTrackerLibrary.Models;
 using System.Linq;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using WeightTracker.Controller;
 
 namespace WeightTracker.Views
 {
@@ -13,11 +14,13 @@ namespace WeightTracker.Views
         private IPersonModel _currentPerson;
         private Form _personViewForm;
         private IValidator _validator;
+        private IAccessor _access;
 
-        public PersonMenuViewForm(IPersonModel selectedPerson, IValidator validator, Form personViewForm)
+        public PersonMenuViewForm(IPersonModel selectedPerson, IValidator validator, IAccessor accessor, Form personViewForm)
         {
             _currentPerson = selectedPerson;
             _validator = validator;
+            _access = accessor;
             _personViewForm = personViewForm;
 
             InitializeComponent();
@@ -57,12 +60,10 @@ namespace WeightTracker.Views
         private void ReturnButton_Click(object sender, EventArgs e)
         {
             this.Hide();
-
-
             _personViewForm.Show();
         }
 
-        private void AddButton_Click(object sender, EventArgs e)
+        private async void AddButton_Click(object sender, EventArgs e)
         {
             if (NewWeightTextBox.Text.Length == 0)
                 return;
@@ -72,6 +73,7 @@ namespace WeightTracker.Views
                 _validator.NewWeightValid(_currentPerson.WeightRecords.Count + 1, NewWeightTextBox.Text);
                 var newWeight = new WeightModel(_currentPerson.WeightRecords.Count + 1, float.Parse(NewWeightTextBox.Text));
                 _currentPerson.WeightRecords.Add(newWeight);
+                await Task.Run(() => _access.SaveNewWeightAsync(_currentPerson.Id, newWeight));
                 WireUp();
                 ErrorInputLabel.Text = "";
                 NewWeightTextBox.Text = "";
