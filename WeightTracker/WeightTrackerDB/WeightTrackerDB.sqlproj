@@ -69,6 +69,8 @@
     <Build Include="dbo\Procedures\sp_NewWeight.sql" />
     <Build Include="dbo\Views\PersonVIew.sql" />
     <Build Include="dbo\Procedures\sp_SelectWeightsByPerson.sql" />
+    <Build Include="dbo\Procedures\sp_DeleteWeight.sql" />
+    <Build Include="dbo\Procedures\sp_ChangePersonData.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="PublishLocations\LocalWeightsDB.publish.publish.xml" />

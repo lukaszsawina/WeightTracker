@@ -56,5 +56,23 @@ namespace WeightTracker.Controller
                 await connection.ExecuteAsync("sp_NewWeight", new { PersonId = PersonId, Id = weight.Id, Weight = weight.Weight, DateWhenAdd = weight.DateWhenAdd }, commandType: CommandType.StoredProcedure);
             }
         }
+
+        public async Task DeleteWeightAsync(int id)
+        {
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(Helper.CnnVal("WeightsDB")))
+            {
+                await connection.ExecuteAsync("sp_DeleteWeight", new { Id = id }, commandType: CommandType.StoredProcedure);
+            }
+        }
+
+        public async Task ChangePersonData(IPersonModel p)
+        {
+            {
+                using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(Helper.CnnVal("WeightsDB")))
+                {
+                    await connection.ExecuteAsync("sp_ChangePersonData", new { id = p.Id, name = p.Name, age = p.Age, height = p.Height }, commandType: CommandType.StoredProcedure);
+                }
+            }
+        }
     }
 }

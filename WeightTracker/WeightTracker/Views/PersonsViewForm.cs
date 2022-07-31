@@ -107,5 +107,10 @@ namespace WeightTracker
         {
             SelectPersonButton.Enabled = PersonListBox.SelectedItems.Count == 0 ? false : true;
         }
+
+        private void PersonsViewForm_Activated(object sender, EventArgs e)
+        {
+            WireUp();
+        }
     }
 }

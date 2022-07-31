@@ -96,5 +96,15 @@ namespace WeightTracker.Controller
         {
             throw new NotImplementedException();
         }
+
+        public Task DeleteWeightAsync(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task ChangePersonData(IPersonModel person)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

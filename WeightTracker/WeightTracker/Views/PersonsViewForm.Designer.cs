@@ -213,6 +213,7 @@
             this.Name = "PersonsViewForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Weight Track app";
+            this.Activated += new System.EventHandler(this.PersonsViewForm_Activated);
             this.ResumeLayout(false);
             this.PerformLayout();
 

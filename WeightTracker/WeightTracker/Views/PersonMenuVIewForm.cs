@@ -113,10 +113,12 @@ namespace WeightTracker.Views
             ErrorInputLabel.Text = "";
             NewWeightTextBox.Text = "";
         }
-        //TODO: implement remove weight from DB and file
-        private void button1_Click(object sender, EventArgs e)
+        private async void button1_Click(object sender, EventArgs e)
         {
-            _currentPerson.WeightRecords.Remove((WeightModel)WeightsListBox.SelectedItem);
+            IWeightModel weightToDelete = (WeightModel)WeightsListBox.SelectedItem;
+
+            await Task.Run(() => _access.DeleteWeightAsync(weightToDelete.Id));
+            _currentPerson.WeightRecords.Remove(weightToDelete);
             WireUp();
         }
 
@@ -130,7 +132,7 @@ namespace WeightTracker.Views
         }
         private void ChangeButton_Click(object sender, EventArgs e)
         {
-            var changeForm = new ChangePersonDataViewForm(_validator, _currentPerson);
+            var changeForm = new ChangePersonDataViewForm(_validator, _currentPerson, _access);
             changeForm.Show();
         }
         private void PersonMenuViewForm_Activated(object sender, EventArgs e)
