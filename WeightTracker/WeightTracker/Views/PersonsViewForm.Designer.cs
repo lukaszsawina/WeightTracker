@@ -213,7 +213,6 @@
             this.Name = "PersonsViewForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Weight Track app";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.PersonsViewForm_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();
 

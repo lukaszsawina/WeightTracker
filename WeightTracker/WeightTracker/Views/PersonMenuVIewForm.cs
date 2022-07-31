@@ -18,23 +18,25 @@ namespace WeightTracker.Views
 
         public PersonMenuViewForm(IPersonModel selectedPerson, IValidator validator, IAccessor accessor, Form personViewForm)
         {
-            _currentPerson = selectedPerson;
-            _validator = validator;
-            _access = accessor;
-            _personViewForm = personViewForm;
-
+            InitializeController(selectedPerson, validator, accessor, personViewForm);
             InitializeComponent();
             InitializeData();
             WireUp();
         }
-        
+
+        private void InitializeController(IPersonModel selectedPerson, IValidator validator, IAccessor accessor, Form personViewForm)
+        {
+            _currentPerson = selectedPerson;
+            _validator = validator;
+            _access = accessor;
+            _personViewForm = personViewForm;
+        }
         private void InitializeData()
         {
             PersonNameLabel.Text = _currentPerson.Name;
             AgeLabel.Text = _currentPerson.Age.ToString();
             HeightLabel.Text = _currentPerson.Height.ToString();
-
-            ErrorInputLabel.Text = "";
+            ErrorLabelsReset();
         }
 
         private void WireUp()
@@ -42,8 +44,11 @@ namespace WeightTracker.Views
             WeightsListBox.DataSource = null;
             WeightsListBox.DataSource = _currentPerson.WeightRecords;
             WeightsListBox.DisplayMember = "WeightData";
-           
+            BMIWireUp();
+        }
 
+        private void BMIWireUp()
+        {
             if (_currentPerson.WeightRecords.Count == 0)
             {
                 BMIValueLabel.Text = "No data";
@@ -54,15 +59,32 @@ namespace WeightTracker.Views
                 SetCategory();
                 BMIValueLabel.Text = Math.Round((double)BMICalculation(), 2).ToString();
             }
-
         }
-
-        private void ReturnButton_Click(object sender, EventArgs e)
+        private float BMICalculation()
         {
-            this.Hide();
-            _personViewForm.Show();
+            float output = _currentPerson.WeightRecords.OrderByDescending(t => t.DateWhenAdd).Select(x => x.Weight).FirstOrDefault() / (_currentPerson.Height * _currentPerson.Height / 10000);
+            return output;
         }
+        private void SetCategory()
+        {
+            IDictionary<float, string> Category = CreateDictionary();
+            float BMI = BMICalculation();
+            WhatMeansLabel.Text = BMI < 40.0f ? Category.Where(x => BMI <= x.Key).Select(x => x.Value).FirstOrDefault() : WhatMeansLabel.Text = "Obese (Class III)";
+        }
+        private IDictionary<float, string> CreateDictionary()
+        {
+            IDictionary<float, string> output = new Dictionary<float, string>();
 
+            output.Add(16.0f, "Underweight (Severe thinness)");
+            output.Add(16.99f, "Underweight (Moderate thinness)");
+            output.Add(18.49f, "Underweight (Mild thinness)");
+            output.Add(24.99f, "Normal range");
+            output.Add(29.99f, "Overweight (Pre-obese)");
+            output.Add(34.99f, "Obese (Class I)");
+            output.Add(39.99f, "Obese (Class II)");
+
+            return output;
+        }
         private async void AddButton_Click(object sender, EventArgs e)
         {
             if (NewWeightTextBox.Text.Length == 0)
@@ -71,19 +93,27 @@ namespace WeightTracker.Views
             try
             {
                 _validator.NewWeightValid(_currentPerson.WeightRecords.Count + 1, NewWeightTextBox.Text);
-                var newWeight = new WeightModel(_currentPerson.WeightRecords.Count + 1, float.Parse(NewWeightTextBox.Text));
-                _currentPerson.WeightRecords.Add(newWeight);
-                await Task.Run(() => _access.SaveNewWeightAsync(_currentPerson.Id, newWeight));
+                await Task.Run(() => AddNewWeightToListAndStorageAsync());
                 WireUp();
-                ErrorInputLabel.Text = "";
-                NewWeightTextBox.Text = "";
+                ErrorLabelsReset();
             }
             catch (Exception ex)
             {
                 ErrorInputLabel.Text = ex.Message;
             }
         }
-
+        private async Task AddNewWeightToListAndStorageAsync()
+        {
+            var newWeight = new WeightModel(_currentPerson.WeightRecords.Count + 1, float.Parse(NewWeightTextBox.Text));
+            _currentPerson.WeightRecords.Add(newWeight);
+            await Task.Run(() => _access.SaveNewWeightAsync(_currentPerson.Id, newWeight));
+        }
+        private void ErrorLabelsReset()
+        {
+            ErrorInputLabel.Text = "";
+            NewWeightTextBox.Text = "";
+        }
+        //TODO: implement remove weight from DB and file
         private void button1_Click(object sender, EventArgs e)
         {
             _currentPerson.WeightRecords.Remove((WeightModel)WeightsListBox.SelectedItem);
@@ -93,51 +123,24 @@ namespace WeightTracker.Views
         private void PersonMenuViewForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             _personViewForm.Close();
-        }
-
-        private float BMICalculation()
-        {
-            float output = _currentPerson.WeightRecords.OrderByDescending(t => t.DateWhenAdd).Select(x => x.Weight).FirstOrDefault()/(_currentPerson.Height*_currentPerson.Height/10000);
-            return output;
-        }
-
-        private void SetCategory()
-        {
-            IDictionary<float, string> Category = new Dictionary<float, string>();
-
-            Category.Add(16.0f, "Underweight (Severe thinness)");
-            Category.Add(16.99f, "Underweight (Moderate thinness)");
-            Category.Add(18.49f, "Underweight (Mild thinness)");
-            Category.Add(24.99f, "Normal range");
-            Category.Add(29.99f, "Overweight (Pre-obese)");
-            Category.Add(34.99f, "Obese (Class I)");
-            Category.Add(39.99f, "Obese (Class II)");
-
-            float BMI = BMICalculation();
-
-            if (BMI < 40.0f)
-                WhatMeansLabel.Text = Category.Where(x => BMI <= x.Key).Select(x => x.Value).FirstOrDefault();
-            else
-                WhatMeansLabel.Text = "Obese (Class III)";
-        }
-
+        }        
         private void WeightsListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (WeightsListBox.SelectedItems.Count == 0)
-                RemoveButton.Enabled = false;
-            else
-                RemoveButton.Enabled = true;
+            RemoveButton.Enabled = WeightsListBox.SelectedItems.Count == 0 ? false : true;
         }
-
         private void ChangeButton_Click(object sender, EventArgs e)
         {
             var changeForm = new ChangePersonDataViewForm(_validator, _currentPerson);
             changeForm.Show();
         }
-
         private void PersonMenuViewForm_Activated(object sender, EventArgs e)
         {
             WireUp();
+        }
+        private void ReturnButton_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            _personViewForm.Show();
         }
     }
 }
