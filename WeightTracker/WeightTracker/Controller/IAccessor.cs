@@ -11,6 +11,6 @@ namespace WeightTracker.Controller
         Task SaveNewPersonAsync(IPersonModel person);
         Task SaveNewWeightAsync(int PersonId, IWeightModel weight);
         Task DeleteWeightAsync(int id);
-        Task ChangePersonData(IPersonModel person);
+        Task ChangePersonDataAsync(IPersonModel person);
     }
 }

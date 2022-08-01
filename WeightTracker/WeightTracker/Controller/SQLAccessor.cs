@@ -65,7 +65,7 @@ namespace WeightTracker.Controller
             }
         }
 
-        public async Task ChangePersonData(IPersonModel p)
+        public async Task ChangePersonDataAsync(IPersonModel p)
         {
             {
                 using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(Helper.CnnVal("WeightsDB")))

@@ -45,7 +45,7 @@ namespace WeightTracker.Views
             {
                 _validator.NewPersonValid(_person.Id, PersonNameTextBox.Text, PersonAgeTextBox.Text, PersonHeightTextBox.Text);
                 _person.ChangeData(PersonNameTextBox.Text, Int32.Parse(PersonAgeTextBox.Text), Int32.Parse(PersonHeightTextBox.Text));
-                await Task.Run(() => _access.ChangePersonData(_person));
+                await Task.Run(() => _access.ChangePersonDataAsync(_person));
                 this.Close();
             }
             catch(Exception ex)

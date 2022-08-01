@@ -116,7 +116,6 @@ namespace WeightTracker.Views
         private async void button1_Click(object sender, EventArgs e)
         {
             IWeightModel weightToDelete = (WeightModel)WeightsListBox.SelectedItem;
-
             await Task.Run(() => _access.DeleteWeightAsync(weightToDelete.Id));
             _currentPerson.WeightRecords.Remove(weightToDelete);
             WireUp();

@@ -36,7 +36,7 @@ namespace WeightTracker
 
             //Template for single class
             builder.RegisterType<Validator>().As<IValidator>();
-            builder.RegisterType<SQLAccessor>().As<IAccessor>();
+            builder.RegisterType<FileAccessor>().As<IAccessor>();
 
 
             builder.RegisterAssemblyTypes(Assembly.Load(nameof(WeightTracker)))
