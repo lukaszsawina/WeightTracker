@@ -19,18 +19,21 @@ namespace WeightTracker
 
         private IValidator _validator;
         private IAccessor _access;
+        private IBMICalculatior _bmiCalculator;
         private List<IPersonModel> PersonRecords = new List<IPersonModel>();
 
-        public PersonsViewForm(IAccessor fileAccess, IValidator validator)
+        public PersonsViewForm(IAccessor fileAccess, IValidator validator, IBMICalculatior bmiCalculator)
         {
             InitializeComponent();
-            InitializeController(fileAccess, validator);
+            InitializeController(fileAccess, validator, bmiCalculator);
             InitializeData();
+            
         }
-        private void InitializeController(IAccessor fileAccess, IValidator validator)
+        private void InitializeController(IAccessor fileAccess, IValidator validator, IBMICalculatior bmiCalculator)
         {
             _access = fileAccess;
             _validator = validator;
+            _bmiCalculator = bmiCalculator;
         }
         public async void InitializeData()
         {
@@ -95,7 +98,7 @@ namespace WeightTracker
         }
         private void SelectPersonButton_Click(object sender, EventArgs e)
         {
-            var personMenuForm = new PersonMenuViewForm((PersonModel)PersonListBox.SelectedItem, _validator, _access, this);
+            var personMenuForm = new PersonMenuViewForm((PersonModel)PersonListBox.SelectedItem, _validator, _access, _bmiCalculator, this);
             SwitchForms(personMenuForm);
         }
         private void SwitchForms(Form formToShow)

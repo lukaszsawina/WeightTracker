@@ -27,7 +27,7 @@ namespace WeightTracker
             {
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
-                Application.Run(new PersonsViewForm(Container.Resolve<IAccessor>(), Container.Resolve<IValidator>()));
+                Application.Run(new PersonsViewForm(Container.Resolve<IAccessor>(), Container.Resolve<IValidator>(), Container.Resolve<IBMICalculatior>()));
             }            
         }
         public static IContainer Configure()
@@ -36,7 +36,8 @@ namespace WeightTracker
 
             //Template for single class
             builder.RegisterType<Validator>().As<IValidator>();
-            builder.RegisterType<FileAccessor>().As<IAccessor>();
+            builder.RegisterType<SQLAccessor>().As<IAccessor>();
+            builder.RegisterType<BMICalculatior>().As<IBMICalculatior>();
 
 
             builder.RegisterAssemblyTypes(Assembly.Load(nameof(WeightTracker)))

@@ -79,6 +79,8 @@
     <Compile Include="Controller\Helper.cs" />
     <Compile Include="Controller\IAccessor.cs" />
     <Compile Include="Controller\SQLAccessor.cs" />
+    <Compile Include="Utilities\BMICalculatior.cs" />
+    <Compile Include="Utilities\IBMICalculatior.cs" />
     <Compile Include="Views\ChangePersonDataViewForm.cs">
       <SubType>Form</SubType>
     </Compile>
