@@ -14,9 +14,16 @@ namespace WeightTracker.Utilities
 
         public float CalculateBMI(float weight, int height)
         {
+            if (ValidInputs(weight, height))
+                throw new ArgumentException("Weight less then zero");
+
             BMI = (weight / (height * height / 10000));
             BMI = (float)Math.Round(BMI, 2);
             return BMI;
+        }
+        private bool ValidInputs(float weight, int height)
+        {
+            return weight < 0 || height < 0;
         }
         public string MatchCategory()
         {

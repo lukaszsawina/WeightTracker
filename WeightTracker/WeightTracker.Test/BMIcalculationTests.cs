@@ -16,6 +16,16 @@ namespace WeightTracker.Test
     {
         IBMICalculatior _bmi = new BMICalculatior();
 
+        [Fact]
+        public void BMI_CalculateShouldMatch()
+        {
+            float expected = 25f;
+
+            float actual = _bmi.CalculateBMI(75f, 183);
+
+            Assert.Equal(expected, actual);
+        }
+
         [Theory]
         [InlineData(84.3f, 183, "Overweight (Pre-obese)")]
         [InlineData(70f, 183, "Normal range")]
@@ -27,6 +37,15 @@ namespace WeightTracker.Test
             string actual = _bmi.MatchCategory();
 
             Assert.Equal(expected, actual);
+        }
+
+        [Theory]
+        [InlineData(-10, 193)]
+        [InlineData(10, -193)]
+        [InlineData(-10, -193)]
+        public void BMI_WeightLessThenZeroExceptionThrow(float weight, int height)
+        {
+            Assert.Throws<ArgumentException>(() => _bmi.CalculateBMI(weight, height));
         }
     }
 }

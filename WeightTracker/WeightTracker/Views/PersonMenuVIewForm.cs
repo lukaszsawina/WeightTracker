@@ -57,9 +57,13 @@ namespace WeightTracker.Views
             }
             else
             {
-                BMIValueLabel.Text = _bmiCalculatior.CalculateBMI(_currentPerson.WeightRecords.OrderByDescending(x=>x.Id).Select(x=>x.Weight).FirstOrDefault(), _currentPerson.Height).ToString();
+                BMIValueLabel.Text = _bmiCalculatior.CalculateBMI(LatestPersonWeight(), _currentPerson.Height).ToString();
                 WhatMeansLabel.Text = _bmiCalculatior.MatchCategory();
             }
+        }
+        private float LatestPersonWeight()
+        {
+            return _currentPerson.WeightRecords.OrderByDescending(x => x.Id).Select(x => x.Weight).FirstOrDefault();
         }
         private async void AddButton_Click(object sender, EventArgs e)
         {
