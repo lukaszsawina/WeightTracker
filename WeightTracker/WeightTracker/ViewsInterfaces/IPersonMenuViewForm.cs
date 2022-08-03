@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WeightTracker.Controller;
+using WeightTracker.Utilities;
 using WeightTrackerLibrary.Models;
 
 namespace WeightTracker.Views
@@ -11,5 +13,7 @@ namespace WeightTracker.Views
     public interface IPersonMenuViewForm
     {
         void SetUpMenuForm(IPersonModel person, Form personsForm);
+        Task DeleteWeightAsync();
+        Task SaveNewWeightAsync();
     }
 }

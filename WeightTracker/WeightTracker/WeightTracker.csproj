@@ -75,13 +75,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ApplicationContainer.cs" />
-    <Compile Include="ContainerConfig.cs" />
+    <Compile Include="ConfigureContainer\ApplicationContainer.cs" />
+    <Compile Include="ConfigureContainer\ContainerConfig.cs" />
     <Compile Include="Controller\FileAccessor.cs" />
     <Compile Include="Controller\Helper.cs" />
     <Compile Include="Controller\IAccessor.cs" />
     <Compile Include="Controller\SQLAccessor.cs" />
-    <Compile Include="IApplicationContainer.cs" />
+    <Compile Include="ConfigureContainer\IApplicationContainer.cs" />
     <Compile Include="ViewsInterfaces\IChangePersonDataViewForm.cs" />
     <Compile Include="Utilities\BMICalculatior.cs" />
     <Compile Include="Utilities\IBMICalculatior.cs" />
@@ -147,5 +147,6 @@
       <Name>WeightTrackerLibrary</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

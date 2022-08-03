@@ -10,5 +10,6 @@ namespace WeightTracker
     public interface IChangePersonDataViewForm
     {
         void SetUpChangeForm(IPersonModel person);
+        Task SaveChangesAsync();
     }
 }

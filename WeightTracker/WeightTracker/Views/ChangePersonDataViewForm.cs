@@ -44,6 +44,10 @@ namespace WeightTracker.Views
         }
         private async void ChangeButton_Click(object sender, EventArgs e)
         {
+            await SaveChangesAsync();
+        }
+        public async Task SaveChangesAsync()
+        {
             try
             {
                 _validator.NewPersonValid(_person.Id, PersonNameTextBox.Text, PersonAgeTextBox.Text, PersonHeightTextBox.Text);
@@ -51,10 +55,11 @@ namespace WeightTracker.Views
                 await Task.Run(() => _access.ChangePersonDataAsync(_person));
                 this.Close();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 ErrorMessageLabel.Text = ex.Message;
             }
         }
+
     }
 }

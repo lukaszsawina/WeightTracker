@@ -87,6 +87,10 @@ namespace WeightTracker.Views
         }
         private async Task AddNewWeightToListAndStorageAsync()
         {
+            await SaveNewWeightAsync();
+        }
+        public async Task SaveNewWeightAsync()
+        {
             var newWeight = new WeightModel(_currentPerson.WeightRecords.Count + 1, float.Parse(NewWeightTextBox.Text));
             _currentPerson.WeightRecords.Add(newWeight);
             await Task.Run(() => _access.SaveNewWeightAsync(_currentPerson.Id, newWeight));
@@ -98,10 +102,14 @@ namespace WeightTracker.Views
         }
         private async void button1_Click(object sender, EventArgs e)
         {
+            await DeleteWeightAsync();
+            WireUp();
+        }
+        public async Task DeleteWeightAsync()
+        {
             IWeightModel weightToDelete = (WeightModel)WeightsListBox.SelectedItem;
             await Task.Run(() => _access.DeleteWeightAsync(weightToDelete.Id));
             _currentPerson.WeightRecords.Remove(weightToDelete);
-            WireUp();
         }
         private void PersonMenuViewForm_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -126,5 +134,7 @@ namespace WeightTracker.Views
             this.Hide();
             _personViewForm.Show();
         }
+
+
     }
 }

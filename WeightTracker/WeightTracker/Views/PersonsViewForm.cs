@@ -29,7 +29,6 @@ namespace WeightTracker
             InitializeComponent();
             InitializeController(fileAccess, validator, bmiCalculator, personMenuViewForm);
             InitializeData();
-            
         }
         private void InitializeController(IAccessor fileAccess, IValidator validator, IBMICalculatior bmiCalculator, IPersonMenuViewForm personMenuViewForm)
         {
@@ -61,6 +60,10 @@ namespace WeightTracker
             PersonListBox.DisplayMember = "FullName";
         }
         private async void NewPersonAddButton_Click(object sender, EventArgs e)
+        {
+            await SaveNewPersonAsync();
+        }
+        public async Task SaveNewPersonAsync()
         {
             try
             {
