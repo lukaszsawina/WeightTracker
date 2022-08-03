@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using WeightTracker.Controller;
 using WeightTracker.Utilities;
+using WeightTracker.Views;
 
 namespace WeightTracker
 {
@@ -18,14 +19,12 @@ namespace WeightTracker
 
             //Template for single class
             builder.RegisterType<ApplicationContainer>().As<IApplicationContainer>();
+            builder.RegisterType<PersonsViewForm>().As<IPersonsViewForm>();
+            builder.RegisterType<PersonMenuViewForm>().As<IPersonMenuViewForm>();
+            builder.RegisterType<ChangePersonDataViewForm>().As<IChangePersonDataViewForm>();
             builder.RegisterType<Validator>().As<IValidator>();
             builder.RegisterType<SQLAccessor>().As<IAccessor>();
             builder.RegisterType<BMICalculatior>().As<IBMICalculatior>();
-
-
-            builder.RegisterAssemblyTypes(Assembly.Load(nameof(WeightTracker)))
-                .Where(t => t.Namespace.Contains("Utilities"))
-                .As(t => t.GetInterfaces().FirstOrDefault(i => i.Name == "I" + t.Name));
 
             return builder.Build();
         }

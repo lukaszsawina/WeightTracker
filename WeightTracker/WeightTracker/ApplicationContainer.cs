@@ -4,23 +4,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WeightTracker.Controller;
+using WeightTracker.Utilities;
 
 namespace WeightTracker
 {
     public class ApplicationContainer : IApplicationContainer
     {
-        Application _app;
+        private IPersonsViewForm _personsViewForm;
 
-        public ApplicationContainer(Application app)
+        public ApplicationContainer(IPersonsViewForm personForm)
         {
-            _app = app;
+            _personsViewForm = personForm;
         }
 
         public void Run()
         {
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            _app.Run(new PersonsViewForm());
+            Application.Run((Form)_personsViewForm);
         }
     }
 }

@@ -9,7 +9,7 @@ using WeightTrackerLibrary.Models;
 
 namespace WeightTracker
 {
-    public partial class PersonsViewForm : Form
+    public partial class PersonsViewForm : Form, IPersonsViewForm
     {
         private int newId { get; set; }
         private string name { get; set; }
@@ -20,20 +20,23 @@ namespace WeightTracker
         private IValidator _validator;
         private IAccessor _access;
         private IBMICalculatior _bmiCalculator;
+        private IPersonMenuViewForm _personMenuViewForm;
+
         private List<IPersonModel> PersonRecords = new List<IPersonModel>();
 
-        public PersonsViewForm(IAccessor fileAccess, IValidator validator, IBMICalculatior bmiCalculator)
+        public PersonsViewForm(IAccessor fileAccess, IValidator validator, IBMICalculatior bmiCalculator, IPersonMenuViewForm personMenuViewForm)
         {
             InitializeComponent();
-            InitializeController(fileAccess, validator, bmiCalculator);
+            InitializeController(fileAccess, validator, bmiCalculator, personMenuViewForm);
             InitializeData();
             
         }
-        private void InitializeController(IAccessor fileAccess, IValidator validator, IBMICalculatior bmiCalculator)
+        private void InitializeController(IAccessor fileAccess, IValidator validator, IBMICalculatior bmiCalculator, IPersonMenuViewForm personMenuViewForm)
         {
             _access = fileAccess;
             _validator = validator;
             _bmiCalculator = bmiCalculator;
+            _personMenuViewForm = personMenuViewForm;
         }
         public async void InitializeData()
         {
@@ -98,8 +101,9 @@ namespace WeightTracker
         }
         private void SelectPersonButton_Click(object sender, EventArgs e)
         {
-            var personMenuForm = new PersonMenuViewForm((PersonModel)PersonListBox.SelectedItem, _validator, _access, _bmiCalculator, this);
-            SwitchForms(personMenuForm);
+            var personMenuForm = _personMenuViewForm;
+            _personMenuViewForm.SetUpMenuForm((IPersonModel)PersonListBox.SelectedItem, (Form)this);
+            SwitchForms((Form)personMenuForm);
         }
         private void SwitchForms(Form formToShow)
         {

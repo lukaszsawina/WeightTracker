@@ -13,22 +13,20 @@ using WeightTrackerLibrary.Models;
 
 namespace WeightTracker.Views
 {
-    public partial class ChangePersonDataViewForm : Form
+    public partial class ChangePersonDataViewForm : Form, IChangePersonDataViewForm
     {
         private IPersonModel _person;
         private IValidator _validator;
         private IAccessor _access;
 
-        public ChangePersonDataViewForm(IValidator validator, IPersonModel person, IAccessor accessor)
+        public ChangePersonDataViewForm(IValidator validator, IAccessor accessor)
         {
             InitializeComponent();
-            InitializeController(validator, person, accessor);
-            InitializeData();
+            InitializeController(validator, accessor);
         }
-        private void InitializeController(IValidator validator, IPersonModel person, IAccessor accessor)
+        private void InitializeController(IValidator validator, IAccessor accessor)
         {
             _validator = validator;
-            _person = person;
             _access = accessor;
         }
         private void InitializeData()
@@ -38,7 +36,12 @@ namespace WeightTracker.Views
             PersonHeightTextBox.Text = _person.Height.ToString();
             ErrorMessageLabel.Text = "";
         }
+        public void SetUpChangeForm(IPersonModel person)
+        {
+            _person = person;
+            InitializeData();
 
+        }
         private async void ChangeButton_Click(object sender, EventArgs e)
         {
             try

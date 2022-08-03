@@ -82,6 +82,7 @@
     <Compile Include="Controller\IAccessor.cs" />
     <Compile Include="Controller\SQLAccessor.cs" />
     <Compile Include="IApplicationContainer.cs" />
+    <Compile Include="ViewsInterfaces\IChangePersonDataViewForm.cs" />
     <Compile Include="Utilities\BMICalculatior.cs" />
     <Compile Include="Utilities\IBMICalculatior.cs" />
     <Compile Include="Views\ChangePersonDataViewForm.cs">
@@ -90,6 +91,8 @@
     <Compile Include="Views\ChangePersonDataViewForm.Designer.cs">
       <DependentUpon>ChangePersonDataViewForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ViewsInterfaces\IPersonMenuViewForm.cs" />
+    <Compile Include="ViewsInterfaces\IPersonsViewForm.cs" />
     <Compile Include="Views\PersonMenuViewForm.cs">
       <SubType>Form</SubType>
     </Compile>

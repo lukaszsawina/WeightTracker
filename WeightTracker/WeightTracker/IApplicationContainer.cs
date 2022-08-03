@@ -1,4 +1,6 @@
-﻿namespace WeightTracker
+﻿using System.Windows.Forms;
+
+namespace WeightTracker
 {
     public interface IApplicationContainer
     {

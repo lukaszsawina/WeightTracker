@@ -9,28 +9,25 @@ using WeightTracker.Controller;
 
 namespace WeightTracker.Views
 {
-    public partial class PersonMenuViewForm : Form
+    public partial class PersonMenuViewForm : Form, IPersonMenuViewForm
     {
         private IPersonModel _currentPerson;
         private Form _personViewForm;
         private IValidator _validator;
         private IAccessor _access;
         private IBMICalculatior _bmiCalculatior;
-        public PersonMenuViewForm(IPersonModel selectedPerson, IValidator validator, IAccessor accessor, IBMICalculatior bmiCalculatior, Form personViewForm)
+        private IChangePersonDataViewForm _changePersonDataViewForm;
+        public PersonMenuViewForm(IValidator validator, IAccessor accessor, IBMICalculatior bmiCalculatior, IChangePersonDataViewForm changePersonDataView)
         {
-            InitializeController(selectedPerson, validator, accessor, bmiCalculatior, personViewForm);
+            InitializeController( validator, accessor, bmiCalculatior, changePersonDataView);
             InitializeComponent();
-            InitializeData();
-            WireUp();
         }
-
-        private void InitializeController(IPersonModel selectedPerson, IValidator validator, IAccessor accessor, IBMICalculatior bmiCalculatior, Form personViewForm)
+        private void InitializeController(IValidator validator, IAccessor accessor, IBMICalculatior bmiCalculatior, IChangePersonDataViewForm changePersonDataView)
         {
-            _currentPerson = selectedPerson;
             _validator = validator;
             _access = accessor;
-            _personViewForm = personViewForm;
             _bmiCalculatior = bmiCalculatior;
+            _changePersonDataViewForm = changePersonDataView; 
         }
         private void InitializeData()
         {
@@ -47,7 +44,13 @@ namespace WeightTracker.Views
             WeightsListBox.DisplayMember = "WeightData";
             BMIWireUp();
         }
-
+        public void SetUpMenuForm(IPersonModel person, Form personsForm)
+        {
+            _currentPerson = person;
+            _personViewForm = personsForm;
+            InitializeData();
+            WireUp();
+        }
         private void BMIWireUp()
         {
             if (_currentPerson.WeightRecords.Count == 0)
@@ -110,7 +113,8 @@ namespace WeightTracker.Views
         }
         private void ChangeButton_Click(object sender, EventArgs e)
         {
-            var changeForm = new ChangePersonDataViewForm(_validator, _currentPerson, _access);
+            var changeForm = (Form)_changePersonDataViewForm;
+            _changePersonDataViewForm.SetUpChangeForm(_currentPerson);
             changeForm.Show();
         }
         private void PersonMenuViewForm_Activated(object sender, EventArgs e)
