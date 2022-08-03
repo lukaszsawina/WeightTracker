@@ -41,3 +41,10 @@ C:\dev\C#\WeightTracker_WinFormApp\WeightTracker\WeightTracker.Test\obj\Debug\We
 C:\dev\C#\WeightTracker_WinFormApp\WeightTracker\WeightTracker.Test\obj\Debug\WeightTracker.Test.dll
 C:\dev\C#\WeightTracker_WinFormApp\WeightTracker\WeightTracker.Test\obj\Debug\WeightTracker.Test.pdb
 C:\dev\C#\WeightTracker_WinFormApp\WeightTracker\WeightTracker.Test\bin\Debug\xunit.runner.json
+C:\dev\C#\WeightTracker_WinFormApp\WeightTracker\WeightTracker.Test\bin\Debug\Autofac.Extras.Moq.dll
+C:\dev\C#\WeightTracker_WinFormApp\WeightTracker\WeightTracker.Test\bin\Debug\Castle.Core.dll
+C:\dev\C#\WeightTracker_WinFormApp\WeightTracker\WeightTracker.Test\bin\Debug\Moq.dll
+C:\dev\C#\WeightTracker_WinFormApp\WeightTracker\WeightTracker.Test\bin\Debug\Autofac.Extras.Moq.pdb
+C:\dev\C#\WeightTracker_WinFormApp\WeightTracker\WeightTracker.Test\bin\Debug\Autofac.Extras.Moq.xml
+C:\dev\C#\WeightTracker_WinFormApp\WeightTracker\WeightTracker.Test\bin\Debug\Castle.Core.xml
+C:\dev\C#\WeightTracker_WinFormApp\WeightTracker\WeightTracker.Test\bin\Debug\Moq.xml

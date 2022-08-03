@@ -14,7 +14,6 @@ namespace WeightTracker
 
     internal static class Program
     {
-        public static IContainer Container;
 
         /// <summary>
         /// The main entry point for the application.
@@ -22,29 +21,14 @@ namespace WeightTracker
         [STAThread]
         static void Main()
         {
-            Container = Configure();
-            using(var scope = Container.BeginLifetimeScope())
+            var container = ContainerConfig.Configure();
+
+            using(var scope = container.BeginLifetimeScope())
             {
-                Application.EnableVisualStyles();
-                Application.SetCompatibleTextRenderingDefault(false);
-                Application.Run(new PersonsViewForm(Container.Resolve<IAccessor>(), Container.Resolve<IValidator>(), Container.Resolve<IBMICalculatior>()));
-            }            
+                var app = scope.Resolve<IApplicationContainer>();
+                app.Run();
+            }
         }
-        public static IContainer Configure()
-        {
-            var builder = new ContainerBuilder();
 
-            //Template for single class
-            builder.RegisterType<Validator>().As<IValidator>();
-            builder.RegisterType<SQLAccessor>().As<IAccessor>();
-            builder.RegisterType<BMICalculatior>().As<IBMICalculatior>();
-
-
-            builder.RegisterAssemblyTypes(Assembly.Load(nameof(WeightTracker)))
-                .Where(t => t.Namespace.Contains("Utilities"))
-                .As(t => t.GetInterfaces().FirstOrDefault(i => i.Name == "I" + t.Name));
-
-            return builder.Build();
-        }
     }
 }
