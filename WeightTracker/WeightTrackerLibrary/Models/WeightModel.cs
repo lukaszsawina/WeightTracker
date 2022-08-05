@@ -15,7 +15,7 @@ namespace WeightTrackerLibrary.Models
         {
             get
             {
-                return $"{ Id }: { Weight } kg { DateWhenAdd.ToShortDateString() }";
+                return $"{ Weight } kg { DateWhenAdd.ToShortDateString() }";
             }
         }
         public WeightModel()

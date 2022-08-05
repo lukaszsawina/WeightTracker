@@ -4,5 +4,5 @@
 	@Weight float,
 	@DateWhenAdd Date
 AS
-	INSERT INTO Weights VALUES (@PersonId, @Id, @Weight, @DateWhenAdd);
+	INSERT INTO Weights (Weights.PersonId, Weights.Id, Weights.Weight, Weights.DateWhenAdd) VALUES (@PersonId, @Id, @Weight, @DateWhenAdd);
 RETURN 0

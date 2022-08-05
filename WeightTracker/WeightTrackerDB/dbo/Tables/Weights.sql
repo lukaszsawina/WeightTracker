@@ -1,8 +1,9 @@
 ﻿CREATE TABLE [dbo].[Weights] (
+    [TableID]     INT        NOT NULL IDENTITY,
     [PersonId]    INT        NOT NULL,
     [Id]          INT        NOT NULL,
     [Weight]      FLOAT (53) NOT NULL,
     [DateWhenAdd] DATE       NOT NULL, 
-    CONSTRAINT [PK_Weights] PRIMARY KEY ([Id], [PersonId]) 
+    CONSTRAINT [PK_Weights] PRIMARY KEY ([TableID]) 
 );
 

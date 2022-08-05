@@ -110,7 +110,6 @@ namespace WeightTracker
             number = number.Replace(" ", "");
             return number.All(Char.IsDigit);
         }
-
         private void ReadDataFromFields()
         {
             newId = PersonRecords.Count + 1;
