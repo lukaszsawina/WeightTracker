@@ -18,6 +18,10 @@ namespace WeightTrackerLibrary.Models
                 return $"{ Id }: { Weight } kg { DateWhenAdd.ToShortDateString() }";
             }
         }
+        public WeightModel()
+        {
+
+        }
         public WeightModel(int id, float weight)
         {
             Id = id;

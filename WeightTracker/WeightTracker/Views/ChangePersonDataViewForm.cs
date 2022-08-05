@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FluentValidation;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -16,17 +17,18 @@ namespace WeightTracker.Views
     public partial class ChangePersonDataViewForm : Form, IChangePersonDataViewForm
     {
         private IPersonModel _person;
-        private IValidator _validator;
+        private PersonMenuViewForm _personMenuViewForm;
+        private IValidator<IPersonModel> _personValidator;
         private IAccessor _access;
 
-        public ChangePersonDataViewForm(IValidator validator, IAccessor accessor)
+        public ChangePersonDataViewForm(IValidator<IPersonModel> personValidator, IAccessor accessor)
         {
             InitializeComponent();
-            InitializeController(validator, accessor);
+            InitializeController(personValidator, accessor);
         }
-        private void InitializeController(IValidator validator, IAccessor accessor)
+        private void InitializeController(IValidator<IPersonModel> personValidator, IAccessor accessor)
         {
-            _validator = validator;
+            _personValidator = personValidator;
             _access = accessor;
         }
         private void InitializeData()
@@ -36,11 +38,12 @@ namespace WeightTracker.Views
             PersonHeightTextBox.Text = _person.Height.ToString();
             ErrorMessageLabel.Text = "";
         }
-        public void SetUpChangeForm(IPersonModel person)
+        public void SetUpChangeForm(IPersonModel person, PersonMenuViewForm personMenuView)
         {
+            _personMenuViewForm = personMenuView;
             _person = person;
-            InitializeData();
 
+            InitializeData();
         }
         private async void ChangeButton_Click(object sender, EventArgs e)
         {
@@ -50,16 +53,56 @@ namespace WeightTracker.Views
         {
             try
             {
-                _validator.NewPersonValid(_person.Id, PersonNameTextBox.Text, PersonAgeTextBox.Text, PersonHeightTextBox.Text);
+                ValidatePersonInputs();
                 _person.ChangeData(PersonNameTextBox.Text, Int32.Parse(PersonAgeTextBox.Text), Int32.Parse(PersonHeightTextBox.Text));
                 await Task.Run(() => _access.ChangePersonDataAsync(_person));
-                this.Close();
+                HideForm();
             }
             catch (Exception ex)
             {
                 ErrorMessageLabel.Text = ex.Message;
             }
         }
+        private void ValidatePersonInputs()
+        {
+            if (!IsAValidDigit(PersonAgeTextBox.Text))
+            {
+                throw new Exception("Age is not a digit");
+            }
+            else if (!IsAValidDigit(PersonHeightTextBox.Text))
+            {
+                throw new Exception("Height is not a digit");
+            }
 
+            PersonModel person = new PersonModel();
+            person.Name = PersonNameTextBox.Text;
+            person.Age = Int32.Parse(PersonAgeTextBox.Text);
+            person.Height = Int32.Parse(PersonHeightTextBox.Text);
+            person.Id = _person.Id;
+
+            var results = _personValidator.Validate(person);
+
+            if (!results.IsValid)
+            {
+                foreach (var e in results.Errors)
+                    throw new Exception(e.ErrorMessage);
+            }
+        }
+        private bool IsAValidDigit(string number)
+        {
+            number = number.Replace(" ", "");
+            return number.All(Char.IsDigit);
+        }
+
+        private void ReturnButton_Click(object sender, EventArgs e)
+        {
+            HideForm();
+        }
+        private void HideForm()
+        {
+            this.Hide();
+            _personMenuViewForm.Show();
+            _personMenuViewForm.InitializeData();
+        }
     }
 }

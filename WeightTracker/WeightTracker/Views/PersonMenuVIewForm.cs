@@ -6,6 +6,7 @@ using System.Linq;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using WeightTracker.Controller;
+using FluentValidation;
 
 namespace WeightTracker.Views
 {
@@ -13,23 +14,24 @@ namespace WeightTracker.Views
     {
         private IPersonModel _currentPerson;
         private Form _personViewForm;
-        private IValidator _validator;
+        private IValidator<IWeightModel> _weightValidator;
         private IAccessor _access;
         private IBMICalculatior _bmiCalculatior;
         private IChangePersonDataViewForm _changePersonDataViewForm;
-        public PersonMenuViewForm(IValidator validator, IAccessor accessor, IBMICalculatior bmiCalculatior, IChangePersonDataViewForm changePersonDataView)
+
+        public PersonMenuViewForm(IValidator<IWeightModel> weightValidator, IAccessor accessor, IBMICalculatior bmiCalculatior, IChangePersonDataViewForm changePersonDataView)
         {
-            InitializeController( validator, accessor, bmiCalculatior, changePersonDataView);
+            InitializeController(weightValidator, accessor, bmiCalculatior, changePersonDataView);
             InitializeComponent();
         }
-        private void InitializeController(IValidator validator, IAccessor accessor, IBMICalculatior bmiCalculatior, IChangePersonDataViewForm changePersonDataView)
+        private void InitializeController(IValidator<IWeightModel> weightValidator, IAccessor accessor, IBMICalculatior bmiCalculatior, IChangePersonDataViewForm changePersonDataView)
         {
-            _validator = validator;
+            _weightValidator = weightValidator;
             _access = accessor;
             _bmiCalculatior = bmiCalculatior;
             _changePersonDataViewForm = changePersonDataView; 
         }
-        private void InitializeData()
+        public void InitializeData()
         {
             PersonNameLabel.Text = _currentPerson.Name;
             AgeLabel.Text = _currentPerson.Age.ToString();
@@ -75,7 +77,7 @@ namespace WeightTracker.Views
 
             try
             {
-                _validator.NewWeightValid(_currentPerson.WeightRecords.Count + 1, NewWeightTextBox.Text);
+                ValidateWeightInput();
                 await Task.Run(() => AddNewWeightToListAndStorageAsync());
                 WireUp();
                 ErrorLabelsReset();
@@ -84,6 +86,16 @@ namespace WeightTracker.Views
             {
                 ErrorInputLabel.Text = ex.Message;
             }
+        }
+        private void ValidateWeightInput()
+        {
+            WeightModel weight = new WeightModel();
+            weight.Weight = float.Parse(NewWeightTextBox.Text);
+
+            var results = _weightValidator.Validate(weight);
+            if (!results.IsValid)
+                foreach (var e in results.Errors)
+                    throw new Exception(e.ErrorMessage);
         }
         private async Task AddNewWeightToListAndStorageAsync()
         {
@@ -122,7 +134,7 @@ namespace WeightTracker.Views
         private void ChangeButton_Click(object sender, EventArgs e)
         {
             var changeForm = (Form)_changePersonDataViewForm;
-            _changePersonDataViewForm.SetUpChangeForm(_currentPerson);
+            _changePersonDataViewForm.SetUpChangeForm(_currentPerson, this);
             changeForm.Show();
         }
         private void PersonMenuViewForm_Activated(object sender, EventArgs e)
@@ -134,7 +146,5 @@ namespace WeightTracker.Views
             this.Hide();
             _personViewForm.Show();
         }
-
-
     }
 }

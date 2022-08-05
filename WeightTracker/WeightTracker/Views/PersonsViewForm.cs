@@ -1,5 +1,7 @@
-﻿using System;
+﻿using FluentValidation;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WeightTracker.Controller;
@@ -17,23 +19,23 @@ namespace WeightTracker
         private string height { get; set; }
 
 
-        private IValidator _validator;
+        private IValidator<IPersonModel> _personValidator;
         private IAccessor _access;
         private IBMICalculatior _bmiCalculator;
         private IPersonMenuViewForm _personMenuViewForm;
 
         private List<IPersonModel> PersonRecords = new List<IPersonModel>();
 
-        public PersonsViewForm(IAccessor fileAccess, IValidator validator, IBMICalculatior bmiCalculator, IPersonMenuViewForm personMenuViewForm)
+        public PersonsViewForm(IAccessor fileAccess, IValidator<IPersonModel> personValidator, IBMICalculatior bmiCalculator, IPersonMenuViewForm personMenuViewForm)
         {
             InitializeComponent();
-            InitializeController(fileAccess, validator, bmiCalculator, personMenuViewForm);
+            InitializeController(fileAccess, personValidator, bmiCalculator, personMenuViewForm);
             InitializeData();
         }
-        private void InitializeController(IAccessor fileAccess, IValidator validator, IBMICalculatior bmiCalculator, IPersonMenuViewForm personMenuViewForm)
+        private void InitializeController(IAccessor fileAccess, IValidator<IPersonModel> personValidator, IBMICalculatior bmiCalculator, IPersonMenuViewForm personMenuViewForm)
         {
             _access = fileAccess;
-            _validator = validator;
+            _personValidator = personValidator;
             _bmiCalculator = bmiCalculator;
             _personMenuViewForm = personMenuViewForm;
         }
@@ -68,7 +70,7 @@ namespace WeightTracker
             try
             {
                 ReadDataFromFields();
-                _validator.NewPersonValid(newId, name, age, height);
+                ValidatePersonInputs();
                 await Task.Run(() => AddNewPersonToListAndStorageAsync());
                 WireUp();
                 ClearInputs();
@@ -78,6 +80,37 @@ namespace WeightTracker
                 ErrorInputLabel.Text = ex.Message;
             }
         }
+        private void ValidatePersonInputs()
+        {
+            if (!IsAValidDigit(age))
+            {
+                throw new Exception("Age is not a digit");
+            }
+            else if(!IsAValidDigit(height))
+            {
+                throw new Exception("Height is not a digit");
+            }
+
+            PersonModel person = new PersonModel();
+            person.Name = name;
+            person.Age = Int32.Parse(age);
+            person.Height = Int32.Parse(height);
+            person.Id = newId;
+
+            var results = _personValidator.Validate(person);
+
+            if (!results.IsValid)
+            {
+                foreach(var e in results.Errors)
+                    throw new Exception(e.ErrorMessage);
+            }
+        }
+        private bool IsAValidDigit(string number)
+        {
+            number = number.Replace(" ", "");
+            return number.All(Char.IsDigit);
+        }
+
         private void ReadDataFromFields()
         {
             newId = PersonRecords.Count + 1;

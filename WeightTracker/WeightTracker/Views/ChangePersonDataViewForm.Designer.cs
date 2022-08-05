@@ -36,6 +36,7 @@
             this.PersonHeightLabel = new System.Windows.Forms.Label();
             this.ChangeButton = new System.Windows.Forms.Button();
             this.ErrorMessageLabel = new System.Windows.Forms.Label();
+            this.ReturnButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // PersonNameLabel
@@ -88,7 +89,7 @@
             // 
             // ChangeButton
             // 
-            this.ChangeButton.Location = new System.Drawing.Point(90, 140);
+            this.ChangeButton.Location = new System.Drawing.Point(17, 140);
             this.ChangeButton.Name = "ChangeButton";
             this.ChangeButton.Size = new System.Drawing.Size(143, 45);
             this.ChangeButton.TabIndex = 6;
@@ -105,11 +106,23 @@
             this.ErrorMessageLabel.Size = new System.Drawing.Size(0, 20);
             this.ErrorMessageLabel.TabIndex = 7;
             // 
+            // ReturnButton
+            // 
+            this.ReturnButton.Location = new System.Drawing.Point(171, 140);
+            this.ReturnButton.Name = "ReturnButton";
+            this.ReturnButton.Size = new System.Drawing.Size(143, 45);
+            this.ReturnButton.TabIndex = 8;
+            this.ReturnButton.Text = "Return";
+            this.ReturnButton.UseVisualStyleBackColor = true;
+            this.ReturnButton.Click += new System.EventHandler(this.ReturnButton_Click);
+            // 
             // ChangePersonDataViewForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(331, 207);
+            this.ControlBox = false;
+            this.Controls.Add(this.ReturnButton);
             this.Controls.Add(this.ErrorMessageLabel);
             this.Controls.Add(this.ChangeButton);
             this.Controls.Add(this.PersonHeightTextBox);
@@ -138,5 +151,6 @@
         private System.Windows.Forms.Label PersonHeightLabel;
         private System.Windows.Forms.Button ChangeButton;
         private System.Windows.Forms.Label ErrorMessageLabel;
+        private System.Windows.Forms.Button ReturnButton;
     }
 }

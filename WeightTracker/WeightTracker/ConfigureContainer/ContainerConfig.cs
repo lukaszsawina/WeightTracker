@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using FluentValidation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +9,7 @@ using System.Threading.Tasks;
 using WeightTracker.Controller;
 using WeightTracker.Utilities;
 using WeightTracker.Views;
+using WeightTrackerLibrary.Models;
 
 namespace WeightTracker
 {
@@ -22,7 +24,8 @@ namespace WeightTracker
             builder.RegisterType<PersonsViewForm>().As<IPersonsViewForm>();
             builder.RegisterType<PersonMenuViewForm>().As<IPersonMenuViewForm>();
             builder.RegisterType<ChangePersonDataViewForm>().As<IChangePersonDataViewForm>();
-            builder.RegisterType<Validator>().As<IValidator>();
+            builder.RegisterType<PersonValidator>().As<IValidator<IPersonModel>>();
+            builder.RegisterType<WeightValidator>().As<IValidator<IWeightModel>>();
             builder.RegisterType<SQLAccessor>().As<IAccessor>();
             builder.RegisterType<BMICalculatior>().As<IBMICalculatior>();
 

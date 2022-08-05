@@ -18,6 +18,10 @@ namespace WeightTrackerLibrary.Models
                 return $"{Id}: {Name}";
             }
         }
+        public PersonModel()
+        {
+
+        }
         public PersonModel(int id, string name, int age, int height)
         {
             Id = id;

@@ -12,6 +12,7 @@ namespace WeightTracker.Views
 {
     public interface IPersonMenuViewForm
     {
+        void InitializeData();
         void SetUpMenuForm(IPersonModel person, Form personsForm);
         Task DeleteWeightAsync();
         Task SaveNewWeightAsync();

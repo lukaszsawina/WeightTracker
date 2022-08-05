@@ -48,3 +48,5 @@ C:\dev\C#\WeightTracker_WinFormApp\WeightTracker\WeightTracker.Test\bin\Debug\Au
 C:\dev\C#\WeightTracker_WinFormApp\WeightTracker\WeightTracker.Test\bin\Debug\Autofac.Extras.Moq.xml
 C:\dev\C#\WeightTracker_WinFormApp\WeightTracker\WeightTracker.Test\bin\Debug\Castle.Core.xml
 C:\dev\C#\WeightTracker_WinFormApp\WeightTracker\WeightTracker.Test\bin\Debug\Moq.xml
+C:\dev\C#\WeightTracker_WinFormApp\WeightTracker\WeightTracker.Test\bin\Debug\FluentValidation.dll
+C:\dev\C#\WeightTracker_WinFormApp\WeightTracker\WeightTracker.Test\bin\Debug\FluentValidation.xml
