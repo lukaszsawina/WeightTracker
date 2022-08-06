@@ -7,6 +7,7 @@ using System.Windows.Forms;
 using WeightTracker.Controller;
 using WeightTracker.Utilities;
 using WeightTracker.Views;
+using log4net;
 using WeightTrackerLibrary.Models;
 
 namespace WeightTracker
@@ -23,6 +24,7 @@ namespace WeightTracker
         private IAccessor _access;
         private IBMICalculatior _bmiCalculator;
         private IPersonMenuViewForm _personMenuViewForm;
+        private static readonly ILog _log = LogManager.GetLogger(typeof(PersonsViewForm));
 
         private List<IPersonModel> PersonRecords = new List<IPersonModel>();
 
@@ -31,6 +33,7 @@ namespace WeightTracker
             InitializeComponent();
             InitializeController(fileAccess, personValidator, bmiCalculator, personMenuViewForm);
             InitializeData();
+            _log.Info("App starts");
         }
         private void InitializeController(IAccessor fileAccess, IValidator<IPersonModel> personValidator, IBMICalculatior bmiCalculator, IPersonMenuViewForm personMenuViewForm)
         {
@@ -74,10 +77,12 @@ namespace WeightTracker
                 await Task.Run(() => AddNewPersonToListAndStorageAsync());
                 WireUp();
                 ClearInputs();
+                _log.Info("New person was added to storage");
             }
             catch (Exception ex)
             {
                 ErrorInputLabel.Text = ex.Message;
+                _log.Error("Exception occurred", ex);
             }
         }
         private void ValidatePersonInputs()
@@ -137,8 +142,10 @@ namespace WeightTracker
         private void SelectPersonButton_Click(object sender, EventArgs e)
         {
             var personMenuForm = _personMenuViewForm;
-            _personMenuViewForm.SetUpMenuForm((IPersonModel)PersonListBox.SelectedItem, (Form)this);
+            var selectedPerson = (IPersonModel)PersonListBox.SelectedItem;
+            _personMenuViewForm.SetUpMenuForm(selectedPerson, (Form)this);
             SwitchForms((Form)personMenuForm);
+            _log.Info($"Person { selectedPerson.FullName } was selected");
         }
         private void SwitchForms(Form formToShow)
         {

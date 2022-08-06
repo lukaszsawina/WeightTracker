@@ -9,6 +9,8 @@ using WeightTracker.Controller;
 using WeightTracker.Utilities;
 using WeightTracker.Views;
 
+[assembly: log4net.Config.XmlConfigurator(Watch =true)]
+
 namespace WeightTracker
 {
 

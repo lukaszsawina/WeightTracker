@@ -1,4 +1,5 @@
 ﻿using FluentValidation;
+using log4net;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -20,6 +21,7 @@ namespace WeightTracker.Views
         private PersonMenuViewForm _personMenuViewForm;
         private IValidator<IPersonModel> _personValidator;
         private IAccessor _access;
+        private readonly ILog _log = LogManager.GetLogger(typeof(ChangePersonDataViewForm));
 
         public ChangePersonDataViewForm(IValidator<IPersonModel> personValidator, IAccessor accessor)
         {
@@ -57,10 +59,12 @@ namespace WeightTracker.Views
                 _person.ChangeData(PersonNameTextBox.Text, Int32.Parse(PersonAgeTextBox.Text), Int32.Parse(PersonHeightTextBox.Text));
                 await Task.Run(() => _access.ChangePersonDataAsync(_person));
                 HideForm();
+                _log.Info("Person data was changed");
             }
             catch (Exception ex)
             {
                 ErrorMessageLabel.Text = ex.Message;
+                _log.Error("Exception occurred", ex);
             }
         }
         private void ValidatePersonInputs()

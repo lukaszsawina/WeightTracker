@@ -34,3 +34,5 @@ C:\dev\C#\WeightTracker_WinFormApp\WeightTracker\WeightTracker\bin\Debug\Dapper.
 C:\dev\C#\WeightTracker_WinFormApp\WeightTracker\WeightTracker\bin\Debug\Dapper.xml
 C:\dev\C#\WeightTracker_WinFormApp\WeightTracker\WeightTracker\bin\Debug\FluentValidation.dll
 C:\dev\C#\WeightTracker_WinFormApp\WeightTracker\WeightTracker\bin\Debug\FluentValidation.xml
+C:\dev\C#\WeightTracker_WinFormApp\WeightTracker\WeightTracker\bin\Debug\log4net.dll
+C:\dev\C#\WeightTracker_WinFormApp\WeightTracker\WeightTracker\bin\Debug\log4net.xml

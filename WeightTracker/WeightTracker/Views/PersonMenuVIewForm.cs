@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using WeightTracker.Controller;
 using FluentValidation;
+using log4net;
 
 namespace WeightTracker.Views
 {
@@ -18,6 +19,8 @@ namespace WeightTracker.Views
         private IAccessor _access;
         private IBMICalculatior _bmiCalculatior;
         private IChangePersonDataViewForm _changePersonDataViewForm;
+        private static readonly ILog _log = LogManager.GetLogger(typeof(PersonMenuViewForm));
+
 
         public PersonMenuViewForm(IValidator<IWeightModel> weightValidator, IAccessor accessor, IBMICalculatior bmiCalculatior, IChangePersonDataViewForm changePersonDataView)
         {
@@ -81,10 +84,12 @@ namespace WeightTracker.Views
                 await Task.Run(() => AddNewWeightToListAndStorageAsync());
                 WireUp();
                 ErrorLabelsReset();
+                _log.Info("New weight was registered");
             }
             catch (Exception ex)
             {
                 ErrorInputLabel.Text = ex.Message;
+                _log.Error("Exception occurred", ex);
             }
         }
         private void ValidateWeightInput()
@@ -122,6 +127,7 @@ namespace WeightTracker.Views
             IWeightModel weightToDelete = (WeightModel)WeightsListBox.SelectedItem;
             await Task.Run(() => _access.DeleteWeightAsync(weightToDelete.Id));
             _currentPerson.WeightRecords.Remove(weightToDelete);
+            _log.Info($"Weight { weightToDelete.WeightData } was deleted");
         }
         private void PersonMenuViewForm_FormClosing(object sender, FormClosingEventArgs e)
         {

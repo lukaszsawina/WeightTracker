@@ -1,0 +1,27 @@
+20:15:52,626 INFO 1 WeightTracker.PersonsViewForm - App starts
+20:16:02,416 ERROR 1 WeightTracker.PersonsViewForm - Exception occurred
+System.Exception: Name has incorect characters
+   w WeightTracker.PersonsViewForm.ValidatePersonInputs() w C:\dev\C#\WeightTracker_WinFormApp\WeightTracker\WeightTracker\Views\PersonsViewForm.cs:wiersz 111
+   w WeightTracker.PersonsViewForm.<SaveNewPersonAsync>d__27.MoveNext() w C:\dev\C#\WeightTracker_WinFormApp\WeightTracker\WeightTracker\Views\PersonsViewForm.cs:wiersz 77
+20:16:45,517 INFO 1 WeightTracker.PersonsViewForm - New person was added to storage
+20:18:58,369 INFO 1 WeightTracker.PersonsViewForm - App starts
+20:19:01,370 INFO 1 WeightTracker.PersonsViewForm - Person 1: £ukasz was selected
+20:26:45,279 ERROR 1 ErrorRollingFile - Exception occurred
+System.Exception: Age is not a digit
+   w WeightTracker.PersonsViewForm.ValidatePersonInputs() w C:\dev\C#\WeightTracker_WinFormApp\WeightTracker\WeightTracker\Views\PersonsViewForm.cs:wiersz 93
+   w WeightTracker.PersonsViewForm.<SaveNewPersonAsync>d__27.MoveNext() w C:\dev\C#\WeightTracker_WinFormApp\WeightTracker\WeightTracker\Views\PersonsViewForm.cs:wiersz 77
+20:27:14,443 ERROR 1 ErrorRollingFile - Exception occurred
+System.Exception: Name has incorect characters
+   w WeightTracker.PersonsViewForm.ValidatePersonInputs() w C:\dev\C#\WeightTracker_WinFormApp\WeightTracker\WeightTracker\Views\PersonsViewForm.cs:wiersz 111
+   w WeightTracker.PersonsViewForm.<SaveNewPersonAsync>d__27.MoveNext() w C:\dev\C#\WeightTracker_WinFormApp\WeightTracker\WeightTracker\Views\PersonsViewForm.cs:wiersz 77
+20:29:13,446 INFO 1 DebugInfoLogger - App starts
+20:34:21,985 INFO 1 DebugInfoLogger - App starts
+20:39:51,046 INFO 1 WeightTracker.PersonsViewForm - App starts
+20:39:54,825 INFO 1 WeightTracker.PersonsViewForm - Person 8: Jan was selected
+20:40:13,504 INFO 1 WeightTracker.Views.PersonMenuViewForm - New weight was registered
+20:40:21,550 INFO 1 WeightTracker.Views.PersonMenuViewForm - Weight 32 kg 06.08.2022 was deleted
+20:40:38,615 ERROR 1 WeightTracker.Views.ChangePersonDataViewForm - Exception occurred
+System.Exception: Name has incorect characters
+   w WeightTracker.Views.ChangePersonDataViewForm.ValidatePersonInputs() w C:\dev\C#\WeightTracker_WinFormApp\WeightTracker\WeightTracker\Views\ChangePersonDataViewForm.cs:wiersz 92
+   w WeightTracker.Views.ChangePersonDataViewForm.<SaveChangesAsync>d__10.MoveNext() w C:\dev\C#\WeightTracker_WinFormApp\WeightTracker\WeightTracker\Views\ChangePersonDataViewForm.cs:wiersz 58
+20:40:41,347 INFO 1 WeightTracker.Views.ChangePersonDataViewForm - Person data was changed
