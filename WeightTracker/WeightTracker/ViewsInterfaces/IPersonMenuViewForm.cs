@@ -15,6 +15,6 @@ namespace WeightTracker.Views
         void InitializeData();
         void SetUpMenuForm(IPersonModel person, Form personsForm);
         Task DeleteWeightAsync();
-        Task SaveNewWeightAsync();
+        Task AddNewWeightToListAndStorageAsync(IWeightModel newWeight);
     }
 }

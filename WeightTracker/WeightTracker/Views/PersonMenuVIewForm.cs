@@ -80,9 +80,13 @@ namespace WeightTracker.Views
             try
             {
                 ValidateWeightInput();
-                await Task.Run(() => AddNewWeightToListAndStorageAsync());
+                
+                var newWeight = new WeightModel(_currentPerson.WeightRecords.Count + 1, float.Parse(NewWeightTextBox.Text));
+                await Task.Run(() => AddNewWeightToListAndStorageAsync(newWeight));
+
                 WireUp();
                 ErrorLabelsReset();
+                
                 _log.Info("New weight was registered");
             }
             catch (Exception ex)
@@ -101,15 +105,11 @@ namespace WeightTracker.Views
                 foreach (var e in results.Errors)
                     throw new Exception(e.ErrorMessage);
         }
-        private async Task AddNewWeightToListAndStorageAsync()
+        public async Task AddNewWeightToListAndStorageAsync(IWeightModel newWeight)
         {
-            await SaveNewWeightAsync();
-        }
-        public async Task SaveNewWeightAsync()
-        {
-            var newWeight = new WeightModel(_currentPerson.WeightRecords.Count + 1, float.Parse(NewWeightTextBox.Text));
             _currentPerson.WeightRecords.Add(newWeight);
-            await Task.Run(() => _access.SaveNewWeightAsync(_currentPerson.Id, newWeight));
+            int newId = _currentPerson.Id;
+            await Task.Run(() => _access.SaveNewWeightAsync(newId, newWeight));
         }
         private void ErrorLabelsReset()
         {

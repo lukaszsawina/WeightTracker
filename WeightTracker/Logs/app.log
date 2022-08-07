@@ -9,3 +9,4 @@ System.Exception: Name has incorect characters
 System.Exception: Name has incorect characters
    w WeightTracker.PersonsViewForm.ValidatePersonInputs() w C:\dev\C#\WeightTracker_WinFormApp\WeightTracker\WeightTracker\Views\PersonsViewForm.cs:wiersz 110
    w WeightTracker.PersonsViewForm.<SaveNewPersonAsync>d__27.MoveNext() w C:\dev\C#\WeightTracker_WinFormApp\WeightTracker\WeightTracker\Views\PersonsViewForm.cs:wiersz 76
+20:06:23,494 INFO 1 WeightTracker.PersonsViewForm - App starts

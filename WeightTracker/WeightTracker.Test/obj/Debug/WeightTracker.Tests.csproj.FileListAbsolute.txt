@@ -50,3 +50,5 @@ C:\dev\C#\WeightTracker_WinFormApp\WeightTracker\WeightTracker.Test\bin\Debug\Ca
 C:\dev\C#\WeightTracker_WinFormApp\WeightTracker\WeightTracker.Test\bin\Debug\Moq.xml
 C:\dev\C#\WeightTracker_WinFormApp\WeightTracker\WeightTracker.Test\bin\Debug\FluentValidation.dll
 C:\dev\C#\WeightTracker_WinFormApp\WeightTracker\WeightTracker.Test\bin\Debug\FluentValidation.xml
+C:\dev\C#\WeightTracker_WinFormApp\WeightTracker\WeightTracker.Test\bin\Debug\log4net.dll
+C:\dev\C#\WeightTracker_WinFormApp\WeightTracker\WeightTracker.Test\bin\Debug\log4net.xml

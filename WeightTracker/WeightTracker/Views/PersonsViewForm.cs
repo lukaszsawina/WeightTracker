@@ -70,9 +70,13 @@ namespace WeightTracker
             {
                 ReadDataFromFields();
                 ValidatePersonInputs();
-                await Task.Run(() => AddNewPersonToListAndStorageAsync());
+
+                IPersonModel newPerson = new PersonModel(newId, name, Int32.Parse(age), Int32.Parse(height));
+                await Task.Run(() => AddNewPersonToListAndStorageAsync(newPerson));
+
                 WireUp();
                 ClearInputs();
+                
                 _log.Info("New person was added to storage");
             }
             catch (Exception ex)
@@ -118,9 +122,8 @@ namespace WeightTracker
             age = AgeTextBox.Text;
             height = HeightTextBox.Text;
         }
-        private async Task AddNewPersonToListAndStorageAsync()
+        public async Task AddNewPersonToListAndStorageAsync(IPersonModel newPerson)
         {
-            IPersonModel newPerson = new PersonModel(newId, name, Int32.Parse(age), Int32.Parse(height));
             PersonRecords.Add(newPerson);
             await Task.Run(() => _access.SaveNewPersonAsync(newPerson));
         }
