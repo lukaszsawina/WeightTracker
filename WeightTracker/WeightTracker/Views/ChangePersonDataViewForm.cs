@@ -19,19 +19,16 @@ namespace WeightTracker.Views
     {
         private IPersonModel _person;
         private PersonMenuViewForm _personMenuViewForm;
-        private IValidator<IPersonModel> _personValidator;
-        private IAccessor _access;
+        private readonly IValidator<IPersonModel> _personValidator;
+        private readonly IAccessor _access;
         private readonly ILog _log = LogManager.GetLogger(typeof(ChangePersonDataViewForm));
 
         public ChangePersonDataViewForm(IValidator<IPersonModel> personValidator, IAccessor accessor)
         {
-            InitializeComponent();
-            InitializeController(personValidator, accessor);
-        }
-        private void InitializeController(IValidator<IPersonModel> personValidator, IAccessor accessor)
-        {
             _personValidator = personValidator;
             _access = accessor;
+
+            InitializeComponent();
         }
         private void InitializeData()
         {

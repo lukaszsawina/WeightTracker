@@ -20,27 +20,23 @@ namespace WeightTracker
         private string height { get; set; }
 
 
-        private IValidator<IPersonModel> _personValidator;
-        private IAccessor _access;
-        private IBMICalculatior _bmiCalculator;
-        private IPersonMenuViewForm _personMenuViewForm;
+        private readonly IValidator<IPersonModel> _personValidator;
+        private readonly IAccessor _access;
+        private readonly IPersonMenuViewForm _personMenuViewForm;
         private static readonly ILog _log = LogManager.GetLogger(typeof(PersonsViewForm));
 
         private List<IPersonModel> PersonRecords = new List<IPersonModel>();
 
-        public PersonsViewForm(IAccessor fileAccess, IValidator<IPersonModel> personValidator, IBMICalculatior bmiCalculator, IPersonMenuViewForm personMenuViewForm)
+        public PersonsViewForm(IAccessor fileAccess, IValidator<IPersonModel> personValidator, IPersonMenuViewForm personMenuViewForm)
         {
-            InitializeComponent();
-            InitializeController(fileAccess, personValidator, bmiCalculator, personMenuViewForm);
-            InitializeData();
             _log.Info("App starts");
-        }
-        private void InitializeController(IAccessor fileAccess, IValidator<IPersonModel> personValidator, IBMICalculatior bmiCalculator, IPersonMenuViewForm personMenuViewForm)
-        {
+
             _access = fileAccess;
             _personValidator = personValidator;
-            _bmiCalculator = bmiCalculator;
             _personMenuViewForm = personMenuViewForm;
+
+            InitializeComponent();
+            InitializeData();
         }
         public async void InitializeData()
         {

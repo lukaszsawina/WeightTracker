@@ -15,25 +15,24 @@ namespace WeightTracker.Views
     {
         private IPersonModel _currentPerson;
         private Form _personViewForm;
-        private IValidator<IWeightModel> _weightValidator;
-        private IAccessor _access;
-        private IBMICalculatior _bmiCalculatior;
-        private IChangePersonDataViewForm _changePersonDataViewForm;
+
+        private readonly IValidator<IWeightModel> _weightValidator;
+        private readonly IAccessor _access;
+        private readonly IBMICalculatior _bmiCalculatior;
+        private readonly IChangePersonDataViewForm _changePersonDataViewForm;
         private static readonly ILog _log = LogManager.GetLogger(typeof(PersonMenuViewForm));
 
 
         public PersonMenuViewForm(IValidator<IWeightModel> weightValidator, IAccessor accessor, IBMICalculatior bmiCalculatior, IChangePersonDataViewForm changePersonDataView)
         {
-            InitializeController(weightValidator, accessor, bmiCalculatior, changePersonDataView);
-            InitializeComponent();
-        }
-        private void InitializeController(IValidator<IWeightModel> weightValidator, IAccessor accessor, IBMICalculatior bmiCalculatior, IChangePersonDataViewForm changePersonDataView)
-        {
             _weightValidator = weightValidator;
             _access = accessor;
             _bmiCalculatior = bmiCalculatior;
-            _changePersonDataViewForm = changePersonDataView; 
+            _changePersonDataViewForm = changePersonDataView;
+
+            InitializeComponent();
         }
+
         public void InitializeData()
         {
             PersonNameLabel.Text = _currentPerson.Name;
@@ -127,6 +126,7 @@ namespace WeightTracker.Views
             IWeightModel weightToDelete = (WeightModel)WeightsListBox.SelectedItem;
             await Task.Run(() => _access.DeleteWeightAsync(weightToDelete.Id));
             _currentPerson.WeightRecords.Remove(weightToDelete);
+
             _log.Info($"Weight { weightToDelete.WeightData } was deleted");
         }
         private void PersonMenuViewForm_FormClosing(object sender, FormClosingEventArgs e)
